@@ -23,7 +23,7 @@ const OG_IMAGE = {
   url: "/og-image.jpg",
   width: 1200,
   height: 630,
-  alt: "Lots of Trip — Find your way to the Himalayas",
+  alt: "Lots of Trips — Find your way to the Himalayas",
 };
 
 export const metadata: Metadata = {

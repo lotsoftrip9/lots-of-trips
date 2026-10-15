@@ -28,7 +28,7 @@ import { getSiteUrl } from "@/lib/utils/siteUrl";
 import { getWeatherForAll } from "@/lib/weather/getWeather";
 
 export const metadata: Metadata = {
-  title: "Lots of Trip — Handcrafted Journeys in Uttarakhand & Himachal",
+  title: "Lots of Trips — Handcrafted Journeys in Uttarakhand & Himachal",
   description:
     "Tailor-made Himalayan trips, mountain treks, and cultural circuits across Uttarakhand and Himachal Pradesh. Planned by locals in Dehradun with handpicked stays and private transport.",
   alternates: {
@@ -52,14 +52,14 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "Lots of Trip — Handcrafted Journeys in Uttarakhand & Himachal",
+    title: "Lots of Trips — Handcrafted Journeys in Uttarakhand & Himachal",
     description:
       "Small-group journeys, treks and pilgrimages across Uttarakhand and Himachal Pradesh — planned by people who live in the mountains.",
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lots of Trip — Handcrafted Journeys in Uttarakhand & Himachal",
+    title: "Lots of Trips — Handcrafted Journeys in Uttarakhand & Himachal",
     description:
       "Small-group journeys, treks and pilgrimages across Uttarakhand and Himachal Pradesh — planned by people who live in the mountains.",
   },
@@ -97,7 +97,7 @@ export default async function HomePage() {
       name: siteConfig.name,
       alternateName: siteConfig.shortName,
       url: siteUrl,
-      logo: `${siteUrl}/logo-dark.png`,
+      logo: `${siteUrl}/logo.png`,
       image: `${siteUrl}/og-image.jpg`,
       description: siteConfig.description,
       telephone: siteConfig.contact.phoneE164,
@@ -150,7 +150,7 @@ export default async function HomePage() {
       <SeasonStrip destinations={destinations} />
       <ExperienceGrid items={experienceItems} />
       <Testimonials items={testimonials} />
-      <InstagramStrip images={INSTAGRAM_REFS.map((ref) => resolveImage(ref, "Lots of Trip on Instagram"))} />
+      <InstagramStrip images={INSTAGRAM_REFS.map((ref) => resolveImage(ref, "Lots of Trips on Instagram"))} />
       <PlanCta image={resolveImage({ destination: "dalhousie", index: 0 }, "Khajjiar meadow, Dalhousie")} />
     </>
   );

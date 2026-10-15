@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps<"/tours/[slug]">): 
   const tour = getTour(slug);
   if (!tour) return {};
 
-  const title = `${tour.title} (${tour.durationDays} Days Itinerary) — Lots of Trip`;
+  const title = `${tour.title} (${tour.durationDays} Days Itinerary) — Lots of Trips`;
   const description = `${tour.summary} Includes stays, private car transfers, sightseeing, and 24/7 on-trip assistance. Pricing shared on request over WhatsApp.`;
   const coverImage = tour.cover.src;
 
@@ -96,7 +96,7 @@ export default async function TourPage({ params }: PageProps<"/tours/[slug]">) {
       },
       provider: {
         "@type": "TravelAgency",
-        name: "Lots of Trip",
+        name: "Lots of Trips",
         url: siteUrl,
       },
     },

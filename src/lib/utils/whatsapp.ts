@@ -7,11 +7,11 @@ export function buildWhatsAppMessageLink(message: string) {
 export function buildWhatsAppLink(subject?: string) {
   return buildWhatsAppMessageLink(
     subject
-      ? `Hi Lots of Trip! I'd like to know more about ${subject}.`
-      : "Hi Lots of Trip! I'd like help planning a trip to the mountains.",
+      ? `Hi Lots of Trips! I'd like to know more about ${subject}.`
+      : "Hi Lots of Trips! I'd like help planning a trip to the mountains.",
   );
 }
 
 export function buildPriceEnquiryLink(subject: string) {
-  return buildWhatsAppMessageLink(`Hi Lots of Trip! Could you share the price for ${subject}?`);
+  return buildWhatsAppMessageLink(`Hi Lots of Trips! Could you share the price for ${subject}?`);
 }

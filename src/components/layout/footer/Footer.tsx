@@ -65,7 +65,7 @@ export function Footer() {
         </div>
 
         <p className={styles.wordmark} aria-hidden>
-          Lots of Trip
+          Lots of Trips
         </p>
 
         <div className="flex flex-col gap-5 border-t border-line py-6 lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:py-8">

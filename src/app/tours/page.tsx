@@ -24,14 +24,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/tours" },
   openGraph: {
     type: "website",
-    title: "Curated Himalayan Journeys — Lots of Trip",
+    title: "Curated Himalayan Journeys — Lots of Trips",
     description:
       "Handcrafted tours across Uttarakhand and Himachal Pradesh with private drivers, handpicked stays, and local support.",
     url: "/tours",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Curated Himalayan Journeys — Lots of Trip",
+    title: "Curated Himalayan Journeys — Lots of Trips",
     description:
       "Handcrafted tours across Uttarakhand and Himachal Pradesh with private drivers, handpicked stays, and local support.",
   },

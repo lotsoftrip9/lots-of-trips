@@ -45,7 +45,7 @@ export const policies: Policy[] = [
   {
     slug: "terms",
     title: "Terms & Conditions",
-    summary: "The terms that apply when you book a journey with Lots of Trip.",
+    summary: "The terms that apply when you book a journey with Lots of Trips.",
     updated: "2026-10-14",
     sections: [
       {

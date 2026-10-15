@@ -14,7 +14,7 @@ export function SeasonBar({ months, name }: { months: number[]; name: string }) 
   const isInSeason = currentMonth ? months.includes(currentMonth) : true;
 
   const notifyLink = buildWhatsAppMessageLink(
-    `Hi Lots of Trip! I'd like to visit ${name} — can you let me know the best upcoming dates and when the season opens?`,
+    `Hi Lots of Trips! I'd like to visit ${name} — can you let me know the best upcoming dates and when the season opens?`,
   );
 
   return (

@@ -1,4 +1,4 @@
-# Lots of Trip — Project Guide & Plan
+# Lots of Trips — Project Guide & Plan
 
 A premium tours & trips website for the Indian Himalayas, covering **Uttarakhand** and **Himachal Pradesh**.
 The goal is a clean, photography-led site with Apple-level clarity and restrained motion. It must feel crafted by a design studio, never like an AI template.
@@ -110,7 +110,7 @@ All business details live in `src/content/site.ts`. Use **dummy placeholder valu
 
 | Field | Value |
 |---|---|
-| Brand | Lots of Trip |
+| Brand | Lots of Trips |
 | Instagram | https://www.instagram.com/lotsoftrip_/ (real) |
 | WhatsApp | +91 70152 48493 (real) → wa.me/917015248493 with a prefilled message |
 | Phone | +91 70152 48493 (real) |

@@ -8,13 +8,13 @@ import { siteConfig } from "@/content/site";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 
 const DESCRIPTION =
-  "Contact Lots of Trip in Dehradun. Get personalized trip planning for Uttarakhand and Himachal Pradesh — instant WhatsApp assistance, transparent pricing, and local guidance.";
+  "Contact Lots of Trips in Dehradun. Get personalized trip planning for Uttarakhand and Himachal Pradesh — instant WhatsApp assistance, transparent pricing, and local guidance.";
 
 export const metadata: Metadata = {
-  title: "Contact & Trip Planner — Lots of Trip",
+  title: "Contact & Trip Planner — Lots of Trips",
   description: DESCRIPTION,
   keywords: [
-    "contact Lots of Trip",
+    "contact Lots of Trips",
     "plan Himalayan trip",
     "custom trip planner Uttarakhand",
     "Himachal tour inquiry",
@@ -24,13 +24,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
   openGraph: {
     type: "website",
-    title: "Plan Your Himalayan Journey — Contact Lots of Trip",
+    title: "Plan Your Himalayan Journey — Contact Lots of Trips",
     description: DESCRIPTION,
     url: "/contact",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Plan Your Himalayan Journey — Contact Lots of Trip",
+    title: "Plan Your Himalayan Journey — Contact Lots of Trips",
     description: DESCRIPTION,
   },
 };
@@ -49,7 +49,7 @@ export default function ContactPage() {
     {
       "@context": "https://schema.org",
       "@type": "ContactPage",
-      name: "Contact Lots of Trip",
+      name: "Contact Lots of Trips",
       description: DESCRIPTION,
       url: `${siteUrl}/contact`,
       mainEntity: {

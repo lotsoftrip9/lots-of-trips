@@ -1,7 +1,7 @@
 import type { NavItem, SiteConfig } from "@/types/site";
 
 export const siteConfig: SiteConfig = {
-  name: "Lots of Trip",
+  name: "Lots of Trips",
   shortName: "LOT",
   description:
     "Small-group journeys, treks and pilgrimages across Uttarakhand and Himachal Pradesh — planned by people who live in the mountains.",

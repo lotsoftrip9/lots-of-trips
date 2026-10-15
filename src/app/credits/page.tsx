@@ -6,19 +6,19 @@ import { getAllCredits } from "@/lib/data/images";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 
 export const metadata: Metadata = {
-  title: "Photo Credits & Licences — Lots of Trip",
-  description: "Photographer credits, sources, and open licences for imagery across Lots of Trip.",
+  title: "Photo Credits & Licences — Lots of Trips",
+  description: "Photographer credits, sources, and open licences for imagery across Lots of Trips.",
   alternates: { canonical: "/credits" },
   openGraph: {
     type: "website",
-    title: "Photo Credits & Licences — Lots of Trip",
-    description: "Photographer credits, sources, and open licences for imagery across Lots of Trip.",
+    title: "Photo Credits & Licences — Lots of Trips",
+    description: "Photographer credits, sources, and open licences for imagery across Lots of Trips.",
     url: "/credits",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Photo Credits & Licences — Lots of Trip",
-    description: "Photographer credits, sources, and open licences for imagery across Lots of Trip.",
+    title: "Photo Credits & Licences — Lots of Trips",
+    description: "Photographer credits, sources, and open licences for imagery across Lots of Trips.",
   },
 };
 

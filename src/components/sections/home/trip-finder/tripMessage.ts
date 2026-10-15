@@ -10,5 +10,5 @@ export function formatTravellers({ adults, children }: Travellers) {
 
 export function buildTripMessage(place: string, month: string, travellers: Travellers) {
   const when = month ? ` in ${month}` : "";
-  return `Hi Lots of Trip! I'd like to plan a trip to ${place}${when} for ${formatTravellers(travellers)}.`;
+  return `Hi Lots of Trips! I'd like to plan a trip to ${place}${when} for ${formatTravellers(travellers)}.`;
 }

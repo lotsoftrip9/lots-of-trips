@@ -7,7 +7,7 @@ import { getDestinations } from "@/lib/data/destinations";
 import { buildWhatsAppLink } from "@/lib/utils/whatsapp";
 
 export const metadata: Metadata = {
-  title: "404 — Lost on the Trail | Lots of Trip",
+  title: "404 — Lost on the Trail | Lots of Trips",
   description: "The page you are looking for does not exist or has moved.",
   robots: {
     index: false,
@@ -53,7 +53,7 @@ export default function NotFound() {
             Browse Journeys
           </ButtonLink>
           <ButtonLink
-            href={buildWhatsAppLink("help finding my way on Lots of Trip")}
+            href={buildWhatsAppLink("help finding my way on Lots of Trips")}
             external
             variant="outline"
             icon={<FaWhatsapp className="size-4 text-[#25d366]" />}

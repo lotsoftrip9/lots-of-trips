@@ -12,7 +12,7 @@
   margin-bottom: -0.08em;
   padding-bottom: 0.2em;
   font-family: var(--font-display);
-  font-size: 16.5cqi;
+  font-size: min(14.2cqi, 17.1vw, 12.5rem);
   font-weight: 500;
   line-height: 0.9;
   letter-spacing: -0.02em;
@@ -76,12 +76,6 @@
   }
 }
 
-@media (min-width: 80rem) {
-  .wordmark {
-    font-size: min(16.5cqi, 14rem);
-  }
-}
-
 @media (min-width: 40rem) {
   .wordmark {
     margin-top: 5rem;
@@ -92,10 +86,6 @@
   .footer {
     margin-bottom: 0;
     border-radius: 1.75rem 1.75rem 0 0;
-  }
-
-  .wordmark {
-    font-size: 15cqi;
   }
 }
 

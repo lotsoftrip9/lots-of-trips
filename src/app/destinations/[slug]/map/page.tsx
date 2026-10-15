@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps<"/destinations/[slu
 
   return {
     title: `${destination.name} on the map`,
-    description: `Where ${destination.name} is in ${destination.region}, with nearby Lots of Trip destinations on an interactive map.`,
+    description: `Where ${destination.name} is in ${destination.region}, with nearby Lots of Trips destinations on an interactive map.`,
     alternates: { canonical: destinationMapHref(destination.slug) },
   };
 }

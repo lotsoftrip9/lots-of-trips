@@ -1,5 +1,5 @@
 export const aboutStory = [
-  "Lots of Trip started with weekend drives out of Dehradun — to Mussoorie for the mist, to Rishikesh for the river, to Shimla and Manali when we had a few days more. Friends kept asking us to plan their trips too.",
+  "Lots of Trips started with weekend drives out of Dehradun — to Mussoorie for the mist, to Rishikesh for the river, to Shimla and Manali when we had a few days more. Friends kept asking us to plan their trips too.",
   "Today we plan journeys across Uttarakhand and Himachal for families, couples and groups of friends. We pick the hotels we would stay in ourselves, the drivers we trust on mountain roads, and the timings that avoid the crowds.",
   "Every trip is planned by a person, not a package engine — and someone from our team is a WhatsApp message away for the whole journey.",
 ];
