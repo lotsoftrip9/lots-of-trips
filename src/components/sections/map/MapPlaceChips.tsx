@@ -19,7 +19,7 @@ export function MapPlaceChips({ places, activeSlug, onSelect, className }: MapPl
   }, [activeSlug]);
 
   return (
-    <nav aria-label="Jump to a destination" className={cn("overflow-x-auto overscroll-x-contain", className)}>
+    <nav aria-label="Jump to a destination" className={cn("overflow-x-auto overscroll-x-contain scrollbar-none", className)}>
       <ul className="flex w-max gap-2 p-1">
         {places.map((place) => {
           const isActive = place.slug === activeSlug;

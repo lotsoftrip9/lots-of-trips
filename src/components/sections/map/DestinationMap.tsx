@@ -49,7 +49,7 @@ export function DestinationMap({ data }: { data: MapData }) {
           </Reveal>
         </div>
 
-        <div className="-mx-gutter mt-8 flex gap-2 overflow-x-auto px-gutter pb-1 sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0" role="tablist" aria-label="Destinations">
+        <div className="-mx-gutter mt-8 flex gap-2 overflow-x-auto px-gutter pb-1 scrollbar-none sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0" role="tablist" aria-label="Destinations">
           {data.destinations.map((item) => (
             <button
               key={item.slug}
