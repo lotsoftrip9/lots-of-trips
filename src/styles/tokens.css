@@ -37,6 +37,6 @@
   --ease-in-out-quart: cubic-bezier(0.65, 0, 0.35, 1);
 
   --spacing-gutter: clamp(1.25rem, 4vw, 3.5rem);
-  --spacing-section: clamp(4rem, 10vw, 10rem);
+  --spacing-section: clamp(4rem, 8vw, 8rem);
   --spacing-header: 4.75rem;
 }

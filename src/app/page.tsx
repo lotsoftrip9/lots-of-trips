@@ -6,15 +6,16 @@ import { Hero } from "@/components/sections/home/Hero";
 import { InstagramStrip } from "@/components/sections/home/InstagramStrip";
 import { Manifesto } from "@/components/sections/home/Manifesto";
 import { SeasonStrip } from "@/components/sections/home/SeasonStrip";
-import { Testimonials } from "@/components/sections/home/Testimonials";
+import { Testimonials } from "@/components/sections/home/testimonials/Testimonials";
 import { TwoStates } from "@/components/sections/home/TwoStates";
 import { DestinationMap } from "@/components/sections/map/DestinationMap";
+import { FaqSection } from "@/components/sections/shared/FaqSection";
 import { PlanCta } from "@/components/sections/shared/PlanCta";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { experiences } from "@/content/experiences";
+import { homeFaqs } from "@/content/faqs";
 import { heroSlides } from "@/content/hero";
 import { siteConfig } from "@/content/site";
-import { testimonials } from "@/content/testimonials";
 import {
   getDestinations,
   getDestinationsByType,
@@ -23,7 +24,9 @@ import {
 } from "@/lib/data/destinations";
 import { resolveImage } from "@/lib/data/images";
 import { getMapData } from "@/lib/data/map";
+import { getTestimonials } from "@/lib/data/testimonials";
 import { getFeaturedTours } from "@/lib/data/tours";
+import { buildFaqSchema } from "@/lib/utils/schema";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 import { getWeatherForAll } from "@/lib/weather/getWeather";
 
@@ -133,6 +136,7 @@ export default async function HomePage() {
         "@id": `${siteUrl}/#organization`,
       },
     },
+    buildFaqSchema(homeFaqs),
   ];
 
   return (
@@ -149,8 +153,9 @@ export default async function HomePage() {
       <FeaturedTours tours={getFeaturedTours()} />
       <SeasonStrip destinations={destinations} />
       <ExperienceGrid items={experienceItems} />
-      <Testimonials items={testimonials} />
+      <Testimonials items={getTestimonials()} />
       <InstagramStrip images={INSTAGRAM_REFS.map((ref) => resolveImage(ref, "Lots of Trips on Instagram"))} />
+      <FaqSection title="Questions people ask before they book" faqs={homeFaqs} subject="planning a trip with you" />
       <PlanCta image={resolveImage({ destination: "dalhousie", index: 0 }, "Khajjiar meadow, Dalhousie")} />
     </>
   );

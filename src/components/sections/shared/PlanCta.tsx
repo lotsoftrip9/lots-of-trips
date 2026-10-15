@@ -4,6 +4,7 @@ import { AppImage } from "@/components/ui/AppImage";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { FaWhatsapp } from "react-icons/fa6";
 import { buildWhatsAppLink } from "@/lib/utils/whatsapp";
+import { QuoteAssurance } from "@/components/sections/shared/QuoteAssurance";
 import type { ImageAsset } from "@/types/image";
 
 interface PlanCtaProps {
@@ -21,9 +22,10 @@ export function PlanCta({ image, subject }: PlanCtaProps) {
             Let&apos;s plan your <em>journey.</em>
           </h2>
           <p className="mt-5 max-w-md text-slate">
-            Tell us when you want to travel and what you hope to feel. A trip designer replies within a
-            day — usually much sooner on WhatsApp.
+            Tell us when you want to travel and what you hope to feel, and we&apos;ll put together a
+            quote built around it.
           </p>
+          <QuoteAssurance className="mt-7 max-w-md" />
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <ButtonLink href="/contact">Plan my trip</ButtonLink>
             <ButtonLink

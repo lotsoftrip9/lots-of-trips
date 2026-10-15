@@ -30,6 +30,14 @@ export function formatCoordinates({ lat, lng }: Coordinates) {
 
 export const padIndex = (index: number) => String(index + 1).padStart(2, "0");
 
+export const initials = (name: string) =>
+  name
+    .split(/\s+|&/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0].toUpperCase())
+    .join("");
+
 const TRIP_TYPE_LABELS: Record<TripType, string> = {
   trek: "Trek",
   pilgrimage: "Pilgrimage",

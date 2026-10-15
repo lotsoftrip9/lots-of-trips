@@ -1,0 +1,32 @@
+.progress {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.progress[data-active] {
+  animation: fill 8s linear forwards;
+}
+
+.root[data-paused] .progress[data-active],
+.root:has(:focus-visible) .progress[data-active] {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) {
+  .root:has(.stage:hover) .progress[data-active] {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes fill {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress[data-active] {
+    animation: none;
+    transform: scaleX(1);
+  }
+}

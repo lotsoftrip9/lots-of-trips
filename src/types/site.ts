@@ -50,7 +50,14 @@ export interface Testimonial {
   quote: string;
   name: string;
   city: string;
-  trip: string;
+  party: string;
+  tourSlug: string;
+  travelled: string;
+}
+
+export interface ResolvedTestimonial extends Testimonial {
+  tourTitle: string;
+  image: ImageAsset;
 }
 
 export interface Experience {

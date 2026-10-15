@@ -10,7 +10,7 @@ export function InstagramStrip({ images }: { images: ImageAsset[] }) {
   const { instagram } = siteConfig.social;
 
   return (
-    <section className="container-x py-section">
+    <section className="container-x pb-section">
       <SectionIntro
         label="On the trail with us"
         title={instagram.handle}

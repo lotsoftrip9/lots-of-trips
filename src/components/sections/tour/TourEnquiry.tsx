@@ -2,6 +2,7 @@ import { Clock, Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { EmbeddedForm } from "@/components/ui/EmbeddedForm";
+import { QuoteAssurance } from "@/components/sections/shared/QuoteAssurance";
 import { pricingCopy, siteConfig } from "@/content/site";
 import { buildPriceEnquiryLink } from "@/lib/utils/whatsapp";
 
@@ -15,9 +16,9 @@ export function TourEnquiry({ title }: { title: string }) {
           <p className="eyebrow text-saffron">Enquire</p>
           <h2 className="mt-3 text-display-md">Book {title}</h2>
           <p className="mt-4 text-slate">
-            Share your dates and group size. We&apos;ll send a tailored quote with hotel options —
-            usually within a few hours.
+            Share your dates and group size, and we&apos;ll send a tailored quote with hotel options.
           </p>
+          <QuoteAssurance className="mt-7" />
           <ul className="mt-8 space-y-3 text-[15px]">
             <li className="flex items-center gap-3">
               <Phone className="size-4 text-accent" aria-hidden />

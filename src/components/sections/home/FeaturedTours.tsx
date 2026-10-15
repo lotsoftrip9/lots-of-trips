@@ -5,7 +5,7 @@ import type { Tour } from "@/types/tour";
 
 export function FeaturedTours({ tours }: { tours: Tour[] }) {
   return (
-    <section className="container-x py-section">
+    <section className="container-x pb-section">
       <SectionIntro
         label="Signature journeys"
         title={

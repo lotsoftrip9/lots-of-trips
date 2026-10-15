@@ -63,4 +63,21 @@ export const pricingCopy = {
   short: "Ask for price",
 };
 
+export const quoteAssurance = {
+  points: [
+    {
+      title: "All-inclusive quotes",
+      description: "Hotels, private car, tolls, parking and driver allowance are in the price. No hidden charges.",
+    },
+    {
+      title: "Free and no obligation",
+      description: "Ask for a quote, compare it, walk away if it isn't right. We don't chase.",
+    },
+    {
+      title: "A reply within a few hours",
+      description: "On WhatsApp, phone or email — whichever suits you.",
+    },
+  ],
+};
+
 export const bookingStatus = "Now booking winter 2026–27 trips";
