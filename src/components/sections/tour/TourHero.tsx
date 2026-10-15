@@ -2,6 +2,7 @@ import { ArrowUpRight, CalendarDays, Gauge, Users } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { Reveal } from "@/components/motion/Reveal";
 import { AppImage } from "@/components/ui/AppImage";
+import { SaveTripButton } from "@/components/ui/SaveTripButton";
 import { pricingCopy } from "@/content/site";
 import { cn } from "@/lib/utils/cn";
 import { difficultyLabel } from "@/lib/utils/format";
@@ -25,6 +26,10 @@ export function TourHero({ tour, places }: { tour: Tour; places: string[] }) {
 
       <div className="relative mt-12 aspect-4/3 overflow-hidden rounded-xl bg-paper sm:aspect-16/9 md:mt-16 lg:aspect-21/9">
         <AppImage image={tour.cover} sizes="(min-width: 1312px) 1216px, 100vw" preload />
+        <SaveTripButton
+          trip={{ kind: "tour", slug: tour.slug, name: tour.title }}
+          className="absolute top-4 right-4 md:top-5 md:right-5"
+        />
       </div>
 
       <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-xl bg-line md:grid-cols-4">

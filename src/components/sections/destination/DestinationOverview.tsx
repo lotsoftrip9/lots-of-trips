@@ -1,6 +1,7 @@
 import { FaWhatsapp } from "react-icons/fa6";
 import { Reveal } from "@/components/motion/Reveal";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { SaveTripButton } from "@/components/ui/SaveTripButton";
 import { ShareButton } from "@/components/ui/ShareButton";
 import { pricingCopy } from "@/content/site";
 import { formatAltitude, formatMonthRange, tripTypeLabel } from "@/lib/utils/format";
@@ -61,6 +62,11 @@ export function DestinationOverview({ destination }: { destination: Destination 
               >
                 {pricingCopy.cta}
               </ButtonLink>
+              <SaveTripButton
+                trip={{ kind: "destination", slug: destination.slug, name: destination.name }}
+                variant="pill"
+                className="w-full justify-center"
+              />
               <div className="grid grid-cols-2 gap-2.5">
                 <ButtonLink href="/contact" variant="outline">
                   Plan a trip

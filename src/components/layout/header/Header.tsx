@@ -13,6 +13,7 @@ import styles from "./Header.module.css";
 import { MegaMenu } from "./MegaMenu";
 import { MenuToggle } from "./MenuToggle";
 import { MobileMenu } from "./MobileMenu";
+import { SavedTripsMenu } from "./saved-trips/SavedTripsMenu";
 
 export function Header({ data }: { data: HeaderData }) {
   const pathname = usePathname();
@@ -71,6 +72,7 @@ export function Header({ data }: { data: HeaderData }) {
           <Logo inheritColor />
 
           <div className="flex items-center justify-end gap-1 sm:gap-1.5">
+            <SavedTripsMenu className={styles.savedButton} />
             <ThemeToggle className={styles.iconButton} />
             <Link href="/contact" className={styles.cta}>
               Plan a trip

@@ -55,6 +55,14 @@ export interface Testimonial {
   travelled: string;
 }
 
+export type SavedTripKind = "tour" | "destination";
+
+export interface SavedTrip {
+  kind: SavedTripKind;
+  slug: string;
+  name: string;
+}
+
 export interface HotelStyle {
   id: string;
   label: string;
