@@ -1,0 +1,18 @@
+.image {
+  animation: hero-zoom 14s var(--ease-out-expo) both;
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    animation: none;
+  }
+}

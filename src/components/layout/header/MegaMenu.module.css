@@ -1,0 +1,65 @@
+.panel {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  z-index: 50;
+  background: var(--color-snow);
+  box-shadow: 0 1px 0 var(--color-line);
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition:
+    clip-path 0.32s var(--ease-out-expo),
+    visibility 0s linear 0.32s;
+}
+
+.scrim {
+  position: fixed;
+  inset: var(--spacing-header) 0 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0;
+  background: color-mix(in srgb, var(--color-snow) 35%, transparent);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  transition: opacity 0.32s ease;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mega:hover .panel,
+.mega:has(:focus-visible) .panel {
+  visibility: visible;
+  clip-path: inset(0 0 0 0);
+  transition:
+    clip-path 0.4s var(--ease-out-expo),
+    visibility 0s;
+}
+
+.mega:hover .scrim,
+.mega:has(:focus-visible) .scrim {
+  opacity: 1;
+}
+
+.mega:hover .reveal,
+.mega:has(:focus-visible) .reveal {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.3s ease 0.08s,
+    transform 0.3s var(--ease-out-expo) 0.08s;
+}
+
+.dismissed .panel {
+  visibility: hidden !important;
+  clip-path: inset(0 0 100% 0) !important;
+}
+
+.dismissed .scrim {
+  opacity: 0 !important;
+}

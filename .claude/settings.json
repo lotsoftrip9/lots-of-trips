@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs sed -i 's#@/components/ui/icons#@/components/ui/BrandIcons#')",
+      "Bash(node -e ' *)",
+      "Bash(sed -i 's/inset: 3.5rem 0 0;/inset: 3rem 0 0;/' src/components/layout/header/MegaMenu.module.css src/components/layout/header/MobileMenu.module.css)",
+      "Bash(curl -s -o img.bin -w \"%{http_code} %{content_type} %{size_download} %{time_total}s\\\\n\" \"http://localhost:3000/_next/image?url=%2Fimages%2Fdestinations%2Fhampta-pass%2F01.webp&w=640&q=75\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download}\\\\n\" http://localhost:3000/images/destinations/hampta-pass/01.webp)",
+      "Bash(curl -s \"http://localhost:3000/_next/static/chunks/src_components_ui_Carousel_module_css_05l7_x8iyyjcc.css\")"
+    ]
+  }
+}

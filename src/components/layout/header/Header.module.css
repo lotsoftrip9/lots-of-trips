@@ -1,0 +1,134 @@
+.header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 50;
+  padding-top: env(safe-area-inset-top);
+  color: var(--color-ink);
+  background-color: color-mix(in srgb, var(--color-snow) 86%, transparent);
+  -webkit-backdrop-filter: saturate(160%) blur(20px);
+  backdrop-filter: saturate(160%) blur(20px);
+  box-shadow: inset 0 -1px 0 var(--color-line);
+  transition:
+    background-color 0.5s var(--ease-out-expo),
+    color 0.5s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo);
+}
+
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .spacer {
+  display: none;
+}
+
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]) {
+  color: #ffffff;
+  background-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: inset 0 -1px 0 rgb(255 255 255 / 0.14);
+}
+
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]):has(nav :hover),
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]):has(nav :focus-visible) {
+  color: var(--color-ink);
+  background-color: var(--color-snow);
+}
+
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]):not(:has(nav :hover, nav :focus-visible)) :global([data-logo-mark="light"]) {
+  display: none;
+}
+
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]):not(:has(nav :hover, nav :focus-visible)) :global([data-logo-mark="dark"]) {
+  display: block;
+}
+
+.header[data-menu-open] {
+  background-color: var(--color-snow);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.15rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.navLink:hover::after,
+.navLink[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.iconButton {
+  display: none;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  height: 2.125rem;
+  padding-inline: 0.95rem;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-snow);
+  background-color: var(--color-ink);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.cta:hover {
+  color: #ffffff;
+  background-color: var(--color-accent);
+}
+
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]) .cta {
+  color: #1c1b19;
+  background-color: #ffffff;
+}
+
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]) .cta:hover {
+  background-color: var(--color-accent-light);
+}
+
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]) .iconButton:hover {
+  background-color: rgb(255 255 255 / 0.14);
+}
+
+@media (min-width: 40rem) {
+  .cta {
+    height: 2.75rem;
+    margin-left: 0.5rem;
+    padding-inline: 1.5rem;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+  }
+
+  .iconButton {
+    display: grid;
+  }
+}

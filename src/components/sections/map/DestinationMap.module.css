@@ -1,0 +1,133 @@
+.gridDot {
+  fill: #ffffff;
+  fill-opacity: 0.07;
+}
+
+.state {
+  stroke-linejoin: round;
+  transition: fill 0.3s ease;
+}
+
+.stateFocus {
+  fill: rgb(255 255 255 / 0.06);
+  stroke: rgb(240 211 160 / 0.55);
+  stroke-width: 1.4;
+}
+
+.stateMuted {
+  fill: rgb(255 255 255 / 0.025);
+  stroke: rgb(255 255 255 / 0.18);
+  stroke-width: 1;
+  stroke-dasharray: 4 5;
+}
+
+.stateLabel {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  fill: #ffffff;
+  fill-opacity: 0.32;
+  pointer-events: none;
+}
+
+.pin {
+  cursor: pointer;
+  outline: none;
+}
+
+.pinHit {
+  fill: transparent;
+}
+
+.pinGlow {
+  fill: #f0d3a0;
+  opacity: 0.12;
+  transition: opacity 0.3s ease;
+}
+
+.pin:hover .pinGlow,
+.pin[data-active] .pinGlow {
+  opacity: 0.25;
+}
+
+.pinDot {
+  fill: #f0d3a0;
+  stroke: #14120f;
+  stroke-width: 3;
+  transition: r 0.3s var(--ease-out-expo);
+}
+
+.pin:focus-visible .pinDot {
+  stroke: #ffffff;
+}
+
+.pinPulse {
+  fill: #f0d3a0;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: pulse 1.8s ease-out infinite;
+}
+
+.chip {
+  pointer-events: none;
+  transform-origin: 0 0;
+}
+
+.chipBg {
+  fill: rgb(20 18 15 / 0.82);
+  stroke: rgb(255 255 255 / 0.16);
+  stroke-width: 1;
+}
+
+.chip[data-active] .chipBg {
+  fill: #f0d3a0;
+  stroke: #f0d3a0;
+}
+
+.chipName {
+  font-size: 13.5px;
+  font-weight: 500;
+  fill: #ffffff;
+}
+
+.chipTemp {
+  font-size: 13.5px;
+  font-weight: 700;
+  fill: #f0d3a0;
+}
+
+.chip[data-active] .chipName,
+.chip[data-active] .chipTemp {
+  fill: #14120f;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .chip:not([data-active]) {
+    display: none;
+  }
+
+  .chip[data-active] {
+    transform: scale(2.1);
+  }
+
+  .stateLabel {
+    font-size: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pinPulse {
+    animation: none;
+  }
+}

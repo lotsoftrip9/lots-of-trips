@@ -1,0 +1,207 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@source "../";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+@media (max-width: 63.99rem) {
+  :root {
+    --spacing-header: 3.75rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  body {
+    font-size: 1.0625rem;
+  }
+}
+
+.dark {
+  color-scheme: dark;
+  --color-snow: #0e0d0c;
+  --color-paper: #171614;
+  --color-surface: #1f1d1a;
+  --color-ink: #f3efe8;
+  --color-ink-soft: #d6d0c6;
+  --color-slate: #a39e95;
+  --color-glacier: #3a3631;
+  --color-accent: #d4b483;
+  --color-accent-hover: #e0c497;
+  --color-saffron: #c9a774;
+  --color-line: rgb(255 255 255 / 0.1);
+}
+
+@theme inline {
+  --font-display: var(--font-inter), -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+@layer base {
+  html {
+    background: var(--color-snow);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    letter-spacing: -0.011em;
+    color: var(--color-ink);
+    background: var(--color-snow);
+    overflow-x: clip;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  h1 em,
+  h2 em,
+  h3 em {
+    font-style: normal;
+    color: var(--color-saffron);
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-snow);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  html.menu-open,
+  html.scroll-locked {
+    overflow: hidden;
+  }
+
+  a,
+  button,
+  [role="button"],
+  [role="tab"],
+  [role="radio"],
+  summary,
+  select,
+  label[for],
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="submit"] {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  button:disabled,
+  [aria-disabled="true"],
+  input:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  .container-x {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--spacing-gutter);
+    max-width: 84rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-eyebrow);
+    line-height: var(--text-eyebrow--line-height);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  .font-serif-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-glacier) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: var(--color-glacier);
+  }
+}
+
+html[data-dark-scrollbar] {
+  background-color: var(--color-night);
+  scrollbar-color: rgb(255 255 255 / 0.28) var(--color-night);
+}
+
+html[data-dark-scrollbar]::-webkit-scrollbar-track {
+  background: var(--color-night);
+}
+
+html[data-dark-scrollbar]::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.28);
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+::view-transition-group(.morph) {
+  animation-duration: 500ms;
+  animation-timing-function: var(--ease-out-expo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

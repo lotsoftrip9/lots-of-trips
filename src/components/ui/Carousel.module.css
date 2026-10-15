@@ -1,0 +1,32 @@
+.track {
+  --edge: max(var(--spacing-gutter), calc((100vw - 82rem) / 2 + var(--spacing-gutter)));
+  display: flex;
+  gap: 1.25rem;
+  padding-inline: var(--edge);
+  scroll-padding-inline: var(--edge);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex: 0 0 78vw;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .slide {
+    flex-basis: 40vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slide {
+    flex-basis: 22rem;
+  }
+}
