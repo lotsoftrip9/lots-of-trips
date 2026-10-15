@@ -3,7 +3,7 @@
 import { useMotionValueEvent, useScroll } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { mainNav } from "@/content/site";
@@ -14,6 +14,7 @@ import { MegaMenu } from "./MegaMenu";
 import { MenuToggle } from "./MenuToggle";
 import { MobileMenu } from "./MobileMenu";
 import { SavedTripsMenu } from "./saved-trips/SavedTripsMenu";
+import { SearchMenu } from "./search/SearchMenu";
 
 export function Header({ data }: { data: HeaderData }) {
   const pathname = usePathname();
@@ -38,6 +39,8 @@ export function Header({ data }: { data: HeaderData }) {
       document.documentElement.classList.remove("menu-open");
     };
   }, [open]);
+
+  const closeMenu = useCallback(() => setOpen(false), []);
 
   const toggle = () => {
     setOpenedAt(pathname);
@@ -72,6 +75,7 @@ export function Header({ data }: { data: HeaderData }) {
           <Logo inheritColor />
 
           <div className="flex items-center justify-end gap-1 sm:gap-1.5">
+            <SearchMenu data={data.search} onOpen={closeMenu} className={styles.searchButton} />
             <SavedTripsMenu className={styles.savedButton} />
             <ThemeToggle className={styles.iconButton} />
             <Link href="/contact" className={styles.cta}>

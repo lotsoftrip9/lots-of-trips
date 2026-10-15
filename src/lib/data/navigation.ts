@@ -1,6 +1,7 @@
 import type { HeaderData } from "@/types/site";
 import { difficultyLabel, formatAltitude } from "@/lib/utils/format";
 import { getDestinationsByState, getStates } from "./destinations";
+import { getSearchData } from "./search";
 import { getTour } from "./tours";
 
 const FEATURED_TOUR = "shimla-manali-classic";
@@ -28,5 +29,6 @@ export function getHeaderData(): HeaderData {
       href: `/tours/${tour.slug}`,
       image: tour.cover,
     },
+    search: getSearchData(),
   };
 }

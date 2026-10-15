@@ -1,5 +1,6 @@
 import type { TripType } from "./destination";
 import type { ImageAsset } from "./image";
+import type { SearchData } from "./search";
 
 export interface NavItem {
   label: string;
@@ -44,6 +45,7 @@ export interface NavFeature {
 export interface HeaderData {
   groups: NavDestinationGroup[];
   feature: NavFeature;
+  search: SearchData;
 }
 
 export interface Testimonial {

@@ -1,0 +1,62 @@
+.trigger {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  color: currentColor;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.label,
+.shortcut {
+  display: none;
+}
+
+@media (min-width: 40rem) {
+  .trigger {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  .trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto;
+    height: 2.5rem;
+    padding: 0 0.5rem 0 0.875rem;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 18%, transparent);
+  }
+
+  .trigger:hover {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 34%, transparent);
+  }
+
+  .label {
+    display: inline;
+    padding-right: 1.25rem;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .shortcut {
+    display: inline-grid;
+    place-items: center;
+    height: 1.5rem;
+    padding: 0 0.45rem;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    background: color-mix(in srgb, currentColor 9%, transparent);
+  }
+}

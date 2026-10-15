@@ -83,7 +83,8 @@
   display: none;
 }
 
-.savedButton:hover {
+.savedButton:hover,
+.searchButton:hover {
   background-color: var(--color-paper);
 }
 
@@ -120,7 +121,8 @@
 }
 
 :global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]) .iconButton:hover,
-:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]) .savedButton:hover {
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]) .savedButton:hover,
+:global(html:has(main > [data-header-overlay]:not([style*="display: none"]))) .header:not([data-solid]) .searchButton:hover {
   background-color: rgb(255 255 255 / 0.14);
 }
 
