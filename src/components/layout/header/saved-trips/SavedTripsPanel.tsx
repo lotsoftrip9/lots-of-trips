@@ -32,7 +32,9 @@ export function SavedTripsPanel({ id, trips, onClose }: SavedTripsPanelProps) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-[17px] font-medium tracking-[-0.01em]">Your shortlist</p>
-          <p className="mt-0.5 text-[13px] text-slate">Saved on this device only.</p>
+          <p className="mt-0.5 text-[13px] text-slate">
+            {trips.length > 0 && `${trips.length} saved · `}On this device only
+          </p>
         </div>
         <button
           type="button"
@@ -63,7 +65,7 @@ export function SavedTripsPanel({ id, trips, onClose }: SavedTripsPanelProps) {
             icon={<FaWhatsapp className="size-4 text-[#25d366]" />}
             className="mt-4 w-full"
           >
-            Send my shortlist on WhatsApp
+            Send on WhatsApp
           </ButtonLink>
           <button
             type="button"

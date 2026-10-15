@@ -8,10 +8,10 @@ import { Manifesto } from "@/components/sections/home/Manifesto";
 import { SeasonStrip } from "@/components/sections/home/SeasonStrip";
 import { Testimonials } from "@/components/sections/home/testimonials/Testimonials";
 import { TwoStates } from "@/components/sections/home/TwoStates";
+import { TripPlanner } from "@/components/sections/home/trip-planner/TripPlanner";
 import { DestinationMap } from "@/components/sections/map/DestinationMap";
 import { FaqSection } from "@/components/sections/shared/FaqSection";
 import { HowItWorks } from "@/components/sections/shared/how-it-works/HowItWorks";
-import { PlanCta } from "@/components/sections/shared/PlanCta";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { experiences } from "@/content/experiences";
 import { homeFaqs } from "@/content/faqs";
@@ -91,6 +91,8 @@ export default async function HomePage() {
     image: resolveImage(experience.image, experience.label),
   }));
 
+  const finderDestinations = destinations.map(({ slug, name, region, state }) => ({ slug, name, region, state }));
+
   const siteUrl = getSiteUrl();
 
   const schemas = [
@@ -145,7 +147,7 @@ export default async function HomePage() {
       <JsonLd data={schemas} />
       <Hero
         slides={heroSlides.map((slide) => ({ caption: slide.caption, image: resolveImage(slide.image, slide.caption) }))}
-        destinations={destinations.map(({ slug, name, region, state }) => ({ slug, name, region, state }))}
+        destinations={finderDestinations}
       />
       <Manifesto />
       <DestinationMap data={getMapData(weather)} />
@@ -158,7 +160,7 @@ export default async function HomePage() {
       <Testimonials items={getTestimonials()} />
       <InstagramStrip images={INSTAGRAM_REFS.map((ref) => resolveImage(ref, "Lots of Trips on Instagram"))} />
       <FaqSection title="Questions people ask before they book" faqs={homeFaqs} subject="planning a trip with you" />
-      <PlanCta image={resolveImage({ destination: "dalhousie", index: 0 }, "Khajjiar meadow, Dalhousie")} />
+      <TripPlanner destinations={finderDestinations} />
     </>
   );
 }

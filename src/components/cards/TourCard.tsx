@@ -51,7 +51,7 @@ export function TourCard({ tour }: { tour: Tour }) {
         </div>
       </Link>
       <SaveTripButton
-        trip={{ kind: "tour", slug: tour.slug, name: tour.title }}
+        trip={{ kind: "tour", slug: tour.slug, name: tour.title, image: tour.cover.src }}
         className="absolute top-4 right-4"
       />
     </div>

@@ -142,7 +142,7 @@ export default async function TourPage({ params }: PageProps<"/tours/[slug]">) {
       </section>
       <HowItWorks />
       <FaqSection title="Before you book" faqs={faqs} subject={`the ${tour.title} journey`} />
-      <TourEnquiry slug={tour.slug} title={tour.title} durationDays={tour.durationDays} bestMonths={tour.bestMonths} />
+      <TourEnquiry tour={tour} places={destinations.map((item) => item.name)} />
       <RelatedTours tours={related} />
     </>
   );

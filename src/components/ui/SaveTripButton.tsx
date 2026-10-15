@@ -1,11 +1,13 @@
 "use client";
 
 import { Heart } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
+import { useState } from "react";
 import { useIsSaved } from "@/hooks/useSavedTrips";
 import { savedTripsStore } from "@/lib/saved-trips/savedTripsStore";
 import { cn } from "@/lib/utils/cn";
 import type { SavedTrip } from "@/types/site";
+import { HeartBurst } from "./HeartBurst";
 
 interface SaveTripButtonProps {
   trip: SavedTrip;
@@ -26,10 +28,22 @@ const VARIANTS = {
   },
 };
 
+const SAVE_POP = { scale: [1, 0.7, 1.3, 1] };
+const UNSAVE_POP = { scale: [1, 0.8, 1] };
+
 export function SaveTripButton({ trip, variant = "overlay", className }: SaveTripButtonProps) {
   const saved = useIsSaved(trip);
+  const reduceMotion = useReducedMotion();
+  const [pop, setPop] = useState(0);
+  const [burst, setBurst] = useState(0);
   const styles = VARIANTS[variant];
   const label = saved ? `Remove ${trip.name} from your shortlist` : `Save ${trip.name} to your shortlist`;
+
+  const handleClick = () => {
+    if (!saved && !reduceMotion) setBurst((count) => count + 1);
+    savedTripsStore.toggle(trip);
+    setPop((count) => count + 1);
+  };
 
   return (
     <button
@@ -37,22 +51,22 @@ export function SaveTripButton({ trip, variant = "overlay", className }: SaveTri
       aria-pressed={saved}
       aria-label={label}
       title={label}
-      onClick={() => savedTripsStore.toggle(trip)}
+      onClick={handleClick}
       className={cn(
-        "inline-flex items-center transition-colors duration-300",
+        "relative inline-flex items-center transition-colors duration-300",
         styles.base,
         saved ? styles.saved : styles.idle,
         className,
       )}
     >
+      {burst > 0 && saved && <HeartBurst key={burst} />}
       <motion.span
-        key={saved ? "saved" : "idle"}
-        initial={{ scale: saved ? 0.4 : 1 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 520, damping: 14 }}
-        className="grid place-items-center"
+        key={pop}
+        animate={pop ? (saved ? SAVE_POP : UNSAVE_POP) : undefined}
+        transition={{ duration: saved ? 0.5 : 0.3, ease: "easeOut" }}
+        className="relative grid place-items-center"
       >
-        <Heart className={cn("size-4.5", saved && "fill-current")} aria-hidden />
+        <Heart className={cn("size-4.5 transition-[fill] duration-200", saved && "fill-current")} aria-hidden />
       </motion.span>
       {variant === "pill" && <span aria-hidden>{saved ? "Saved" : "Save"}</span>}
     </button>

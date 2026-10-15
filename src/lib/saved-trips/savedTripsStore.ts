@@ -9,12 +9,12 @@ let cache: SavedTrip[] | null = null;
 
 export const savedTripId = ({ kind, slug }: Pick<SavedTrip, "kind" | "slug">) => `${kind}:${slug}`;
 
-const isSavedTrip = (value: unknown): value is SavedTrip =>
-  typeof value === "object" &&
-  value !== null &&
-  ((value as SavedTrip).kind === "tour" || (value as SavedTrip).kind === "destination") &&
-  typeof (value as SavedTrip).slug === "string" &&
-  typeof (value as SavedTrip).name === "string";
+function isSavedTrip(value: unknown): value is SavedTrip {
+  if (typeof value !== "object" || value === null) return false;
+  const { kind, slug, name, image } = value as Partial<SavedTrip>;
+  const validImage = image === undefined || (typeof image === "string" && image.startsWith("/images/"));
+  return (kind === "tour" || kind === "destination") && typeof slug === "string" && typeof name === "string" && validImage;
+}
 
 function readStorage(): SavedTrip[] {
   try {

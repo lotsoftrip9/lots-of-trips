@@ -63,7 +63,7 @@ export function DestinationOverview({ destination }: { destination: Destination 
                 {pricingCopy.cta}
               </ButtonLink>
               <SaveTripButton
-                trip={{ kind: "destination", slug: destination.slug, name: destination.name }}
+                trip={{ kind: "destination", slug: destination.slug, name: destination.name, image: destination.images[0]?.src }}
                 variant="pill"
                 className="w-full justify-center"
               />

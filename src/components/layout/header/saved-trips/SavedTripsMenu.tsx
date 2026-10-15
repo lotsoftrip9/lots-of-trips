@@ -14,10 +14,17 @@ export function SavedTripsMenu({ className }: { className?: string }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
   const close = useCallback(() => setOpen(false), []);
+  const count = trips.length;
+  const [previousCount, setPreviousCount] = useState(count);
+  const [beat, setBeat] = useState(0);
+
+  if (count !== previousCount) {
+    if (previousCount > 0 && count === previousCount + 1) setBeat((value) => value + 1);
+    setPreviousCount(count);
+  }
 
   useDismiss(rootRef, open, close);
 
-  const count = trips.length;
   if (count === 0 && !open) return null;
 
   return (
@@ -31,9 +38,20 @@ export function SavedTripsMenu({ className }: { className?: string }) {
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={`Your shortlist, ${count} saved`}
-        className={cn("relative grid size-8 place-items-center rounded-full transition-colors duration-200 sm:size-9", className)}
+        className={cn(
+          "relative grid size-8 place-items-center rounded-full transition-colors duration-200",
+          open && "bg-paper text-ink",
+          className,
+        )}
       >
-        <Heart className="size-4 fill-current" aria-hidden />
+        <motion.span
+          key={beat}
+          animate={beat ? { scale: [1, 1.35, 0.92, 1.1, 1] } : undefined}
+          transition={{ duration: 0.65, ease: "easeOut" }}
+          className="grid place-items-center"
+        >
+          <Heart className="size-4" aria-hidden />
+        </motion.span>
         <AnimatePresence initial={false} mode="popLayout">
           <motion.span
             key={count}
@@ -42,7 +60,7 @@ export function SavedTripsMenu({ className }: { className?: string }) {
             exit={{ scale: 0.4, opacity: 0 }}
             transition={{ type: "spring", stiffness: 520, damping: 18 }}
             aria-hidden
-            className="absolute -top-0.5 -right-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-accent px-1 text-[10px] leading-none font-semibold text-white tabular-nums"
+            className="absolute top-0.5 right-0 grid h-3.5 min-w-3.5 place-items-center rounded-full bg-accent px-0.75 text-[9px] leading-none font-semibold text-white tabular-nums"
           >
             {count}
           </motion.span>

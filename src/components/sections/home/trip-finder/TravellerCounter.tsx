@@ -2,22 +2,14 @@
 
 import { Minus, Plus } from "lucide-react";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils/cn";
+import { MAX_TRAVELLERS, TRAVELLER_ROWS } from "./travellerRows";
 import type { Travellers } from "./types";
 
 interface TravellerCounterProps {
   value: Travellers;
   onChange: (value: Travellers) => void;
-  onDone?: () => void;
-  className?: string;
+  onDone: () => void;
 }
-
-const ROWS: { key: keyof Travellers; label: string; hint: string; min: number }[] = [
-  { key: "adults", label: "Adults", hint: "Ages 13 and above", min: 1 },
-  { key: "children", label: "Children", hint: "Ages 2 – 12", min: 0 },
-];
-
-const MAX = 20;
 
 function StepButton({ label, disabled, onClick, children }: { label: string; disabled: boolean; onClick: () => void; children: ReactNode }) {
   return (
@@ -33,11 +25,11 @@ function StepButton({ label, disabled, onClick, children }: { label: string; dis
   );
 }
 
-export function TravellerCounter({ value, onChange, onDone, className }: TravellerCounterProps) {
+export function TravellerCounter({ value, onChange, onDone }: TravellerCounterProps) {
   return (
-    <div className={cn("p-4 md:w-80", className)}>
+    <div className="p-4 md:w-80">
       <ul className="divide-y divide-line">
-        {ROWS.map(({ key, label, hint, min }) => (
+        {TRAVELLER_ROWS.map(({ key, label, hint, min }) => (
           <li key={key} className="flex items-center justify-between gap-4 py-3">
             <div>
               <p className="text-[15px] font-medium">{label}</p>
@@ -56,7 +48,7 @@ export function TravellerCounter({ value, onChange, onDone, className }: Travell
               </span>
               <StepButton
                 label={`More ${label.toLowerCase()}`}
-                disabled={value[key] >= MAX}
+                disabled={value[key] >= MAX_TRAVELLERS}
                 onClick={() => onChange({ ...value, [key]: value[key] + 1 })}
               >
                 <Plus className="size-4" aria-hidden />
@@ -65,15 +57,13 @@ export function TravellerCounter({ value, onChange, onDone, className }: Travell
           </li>
         ))}
       </ul>
-      {onDone && (
-        <button
-          type="button"
-          onClick={onDone}
-          className="mt-3 w-full rounded-full bg-ink py-2.5 text-[12px] font-medium tracking-[0.14em] text-snow uppercase transition-colors hover:bg-ink-soft"
-        >
-          Done
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={onDone}
+        className="mt-3 w-full rounded-full bg-ink py-2.5 text-[12px] font-medium tracking-[0.14em] text-snow uppercase transition-colors hover:bg-ink-soft"
+      >
+        Done
+      </button>
     </div>
   );
 }

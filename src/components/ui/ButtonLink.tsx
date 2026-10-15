@@ -21,7 +21,7 @@ const PILL_VARIANTS = new Set<ButtonVariant>(["solid", "light", "glass", "outlin
 
 export const buttonClassName = (variant: ButtonVariant, className?: string) =>
   cn(
-    "group inline-flex items-center justify-center gap-1.5 whitespace-nowrap transition-colors duration-300 sm:gap-2",
+    "group inline-flex items-center justify-center gap-1.5 whitespace-nowrap transition-colors duration-300 sm:gap-2 [&>svg]:shrink-0",
     VARIANTS[variant],
     className,
   );

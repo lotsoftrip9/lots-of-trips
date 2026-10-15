@@ -27,7 +27,7 @@ export function TourHero({ tour, places }: { tour: Tour; places: string[] }) {
       <div className="relative mt-12 aspect-4/3 overflow-hidden rounded-xl bg-paper sm:aspect-16/9 md:mt-16 lg:aspect-21/9">
         <AppImage image={tour.cover} sizes="(min-width: 1312px) 1216px, 100vw" preload />
         <SaveTripButton
-          trip={{ kind: "tour", slug: tour.slug, name: tour.title }}
+          trip={{ kind: "tour", slug: tour.slug, name: tour.title, image: tour.cover.src }}
           className="absolute top-4 right-4 md:top-5 md:right-5"
         />
       </div>

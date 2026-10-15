@@ -118,7 +118,7 @@ All business details live in `src/content/site.ts`. Use **dummy placeholder valu
 | Address | `Dehradun, Uttarakhand, India` (dummy) |
 
 ### Contact flows
-1. **Contact form** is the DA Forms embed (siteConfig.contactFormSrc) rendered by components/ui/EmbeddedForm, which auto-resizes via the da-forms:height postMessage. Used on /contact and every tour page.
+1. **Contact form** is the DA Forms embed (siteConfig.contactFormSrc) rendered by components/ui/EmbeddedForm, which auto-resizes via the da-forms:height postMessage. Used on /contact only. Tour pages use the WhatsApp quote planner (sections/tour/quote-builder) instead, and the home page ends with the trip planner (sections/home/trip-planner): four labelled fields plus a live WhatsApp message preview.
 2. **Direct WhatsApp.** A floating WhatsApp button on every page, plus "Chat on WhatsApp" CTAs on tour and destination pages. Each opens `wa.me` with a prefilled message naming the tour or destination (built by a `buildWhatsAppLink` util).
 3. **Instagram.** Linked in the header/menu and footer, plus an "On the trail with us" Instagram section on the home page (dummy grid of local images linking to the profile; no API for now).
 

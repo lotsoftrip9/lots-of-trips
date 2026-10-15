@@ -14,7 +14,3 @@ export function buildQuoteMessage({ tourTitle, durationDays, month, travellers, 
   const when = month ? `in ${month}` : "on flexible dates";
   return `Hi Lots of Trips! I'd like a quote for the ${tourTitle} journey (${durationDays} days) ${when} for ${formatTravellers(travellers)}, with ${hotel.label.toLowerCase()} hotels.`;
 }
-
-export function summariseQuote({ month, travellers, hotel }: Omit<QuoteRequest, "tourTitle" | "durationDays">) {
-  return [month || "Flexible dates", formatTravellers(travellers), `${hotel.label} hotels`].join(" · ");
-}

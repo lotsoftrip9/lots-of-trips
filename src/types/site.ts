@@ -61,12 +61,14 @@ export interface SavedTrip {
   kind: SavedTripKind;
   slug: string;
   name: string;
+  image?: string;
 }
 
 export interface HotelStyle {
   id: string;
   label: string;
   description: string;
+  stars: number;
 }
 
 export interface ProcessStep {

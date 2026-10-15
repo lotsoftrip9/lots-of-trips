@@ -60,7 +60,7 @@ export function DestinationCard({ destination, sizes, className, aspect = "portr
         </div>
       </Link>
       <SaveTripButton
-        trip={{ kind: "destination", slug: destination.slug, name: destination.name }}
+        trip={{ kind: "destination", slug: destination.slug, name: destination.name, image: destination.images[0]?.src }}
         className="absolute top-3 right-3"
       />
     </div>
