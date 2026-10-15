@@ -10,6 +10,7 @@ import { Testimonials } from "@/components/sections/home/testimonials/Testimonia
 import { TwoStates } from "@/components/sections/home/TwoStates";
 import { DestinationMap } from "@/components/sections/map/DestinationMap";
 import { FaqSection } from "@/components/sections/shared/FaqSection";
+import { HowItWorks } from "@/components/sections/shared/how-it-works/HowItWorks";
 import { PlanCta } from "@/components/sections/shared/PlanCta";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { experiences } from "@/content/experiences";
@@ -151,6 +152,7 @@ export default async function HomePage() {
       <TwoStates panels={statePanels} />
       <DestinationGallery destinations={destinations} total={destinations.length} weather={weather} />
       <FeaturedTours tours={getFeaturedTours()} />
+      <HowItWorks />
       <SeasonStrip destinations={destinations} />
       <ExperienceGrid items={experienceItems} />
       <Testimonials items={getTestimonials()} />

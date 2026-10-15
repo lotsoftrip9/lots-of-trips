@@ -3,6 +3,7 @@
   inset-inline: 0;
   top: 0;
   z-index: 50;
+  view-transition-name: site-header;
   padding-top: env(safe-area-inset-top);
   color: var(--color-ink);
   background-color: color-mix(in srgb, var(--color-snow) 86%, transparent);

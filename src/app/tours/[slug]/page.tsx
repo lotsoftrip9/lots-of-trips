@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DestinationGrid } from "@/components/sections/destinations/DestinationGrid";
 import { FaqSection } from "@/components/sections/shared/FaqSection";
+import { HowItWorks } from "@/components/sections/shared/how-it-works/HowItWorks";
 import { Itinerary } from "@/components/sections/tour/Itinerary";
 import { RelatedTours } from "@/components/sections/tour/RelatedTours";
 import { TourEnquiry } from "@/components/sections/tour/TourEnquiry";
@@ -131,7 +132,7 @@ export default async function TourPage({ params }: PageProps<"/tours/[slug]">) {
     <>
       <JsonLd data={schemas} />
       <TourHero tour={tour} places={destinations.map((item) => item.name)} />
-      <Itinerary days={tour.itinerary} />
+      <Itinerary days={tour.itinerary} slug={tour.slug} title={tour.title} />
       <TourInclusions inclusions={tour.inclusions} exclusions={tour.exclusions} />
       <section className="container-x pb-section">
         <h2 className="text-display-md">Places on this journey</h2>
@@ -139,8 +140,9 @@ export default async function TourPage({ params }: PageProps<"/tours/[slug]">) {
           <DestinationGrid destinations={destinations} />
         </div>
       </section>
+      <HowItWorks />
       <FaqSection title="Before you book" faqs={faqs} subject={`the ${tour.title} journey`} />
-      <TourEnquiry title={tour.title} />
+      <TourEnquiry slug={tour.slug} title={tour.title} durationDays={tour.durationDays} bestMonths={tour.bestMonths} />
       <RelatedTours tours={related} />
     </>
   );

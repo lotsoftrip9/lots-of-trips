@@ -2,12 +2,14 @@
 
 import { Minus, Plus } from "lucide-react";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils/cn";
 import type { Travellers } from "./types";
 
 interface TravellerCounterProps {
   value: Travellers;
   onChange: (value: Travellers) => void;
-  onDone: () => void;
+  onDone?: () => void;
+  className?: string;
 }
 
 const ROWS: { key: keyof Travellers; label: string; hint: string; min: number }[] = [
@@ -31,9 +33,9 @@ function StepButton({ label, disabled, onClick, children }: { label: string; dis
   );
 }
 
-export function TravellerCounter({ value, onChange, onDone }: TravellerCounterProps) {
+export function TravellerCounter({ value, onChange, onDone, className }: TravellerCounterProps) {
   return (
-    <div className="p-4 md:w-80">
+    <div className={cn("p-4 md:w-80", className)}>
       <ul className="divide-y divide-line">
         {ROWS.map(({ key, label, hint, min }) => (
           <li key={key} className="flex items-center justify-between gap-4 py-3">
@@ -63,13 +65,15 @@ export function TravellerCounter({ value, onChange, onDone }: TravellerCounterPr
           </li>
         ))}
       </ul>
-      <button
-        type="button"
-        onClick={onDone}
-        className="mt-3 w-full rounded-full bg-ink py-2.5 text-[12px] font-medium tracking-[0.14em] text-snow uppercase transition-colors hover:bg-ink-soft"
-      >
-        Done
-      </button>
+      {onDone && (
+        <button
+          type="button"
+          onClick={onDone}
+          className="mt-3 w-full rounded-full bg-ink py-2.5 text-[12px] font-medium tracking-[0.14em] text-snow uppercase transition-colors hover:bg-ink-soft"
+        >
+          Done
+        </button>
+      )}
     </div>
   );
 }

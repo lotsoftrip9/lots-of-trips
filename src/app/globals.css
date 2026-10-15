@@ -197,6 +197,53 @@ html[data-dark-scrollbar]::-webkit-scrollbar-thumb {
   animation-timing-function: var(--ease-out-expo);
 }
 
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.page-exit) {
+  animation: 180ms ease-in both page-fade-out;
+}
+
+::view-transition-new(.page-enter) {
+  animation: 520ms var(--ease-out-expo) 80ms both page-fade-in;
+}
+
+::view-transition-group(site-header) {
+  z-index: 100;
+  animation: none;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

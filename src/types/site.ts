@@ -55,6 +55,17 @@ export interface Testimonial {
   travelled: string;
 }
 
+export interface HotelStyle {
+  id: string;
+  label: string;
+  description: string;
+}
+
+export interface ProcessStep {
+  title: string;
+  description: string;
+}
+
 export interface ResolvedTestimonial extends Testimonial {
   tourTitle: string;
   image: ImageAsset;

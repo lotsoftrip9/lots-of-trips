@@ -67,7 +67,7 @@ export const quoteAssurance = {
   points: [
     {
       title: "All-inclusive quotes",
-      description: "Hotels, private car, tolls, parking and driver allowance are in the price. No hidden charges.",
+      description: "Stays, transport and everything listed as included are in the price. No hidden charges.",
     },
     {
       title: "Free and no obligation",

@@ -1,12 +1,24 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { AppImage } from "@/components/ui/AppImage";
 import type { ResolvedItineraryDay } from "@/types/tour";
+import { ItineraryDownload } from "./ItineraryDownload";
 
-export function Itinerary({ days }: { days: ResolvedItineraryDay[] }) {
+interface ItineraryProps {
+  days: ResolvedItineraryDay[];
+  slug: string;
+  title: string;
+}
+
+export function Itinerary({ days, slug, title }: ItineraryProps) {
   return (
     <section className="container-x py-section">
-      <p className="eyebrow text-saffron">Day by day</p>
-      <h2 className="mt-3 text-display-md">The itinerary</h2>
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="eyebrow text-saffron">Day by day</p>
+          <h2 className="mt-3 text-display-md">The itinerary</h2>
+        </div>
+        <ItineraryDownload slug={slug} title={title} className="sm:w-88" />
+      </div>
       <ol className="mt-10 space-y-5 border-l border-line pl-6 md:pl-10">
         {days.map((day) => (
           <li key={day.day} className="relative">
