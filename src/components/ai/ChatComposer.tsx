@@ -21,10 +21,13 @@ export function ChatComposer({ isStreaming, autoFocus, onSend, onStop }: ChatCom
 
   const submit = (event?: FormEvent) => {
     event?.preventDefault();
-    if (isStreaming || !value.trim()) return;
+    if (!value.trim()) return;
     onSend(value);
     setValue("");
+    inputRef.current?.focus();
   };
+
+  const showStop = isStreaming && !value.trim();
 
   const onKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) submit(event);
@@ -47,7 +50,7 @@ export function ChatComposer({ isStreaming, autoFocus, onSend, onStop }: ChatCom
           maxLength={2000}
           className="field-sizing-content max-h-32 min-h-9 flex-1 resize-none bg-transparent py-1.5 text-base text-ink outline-none placeholder:text-slate sm:text-[15px]"
         />
-        {isStreaming ? (
+        {showStop ? (
           <button
             type="button"
             onClick={onStop}

@@ -1,69 +1,76 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { tripzyCopy } from "@/content/tripzy";
+import { buildHistory, streamTripzyReply } from "@/lib/ai/client";
 import type { ChatMessage } from "@/types/chat";
-
-const HISTORY_LIMIT = 10;
 
 const createId = () => crypto.randomUUID();
 
 export function useTripzyChat() {
+  const pathname = usePathname();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
+  const messagesRef = useRef<ChatMessage[]>([]);
   const controllerRef = useRef<AbortController | null>(null);
 
-  const updateMessage = (id: string, content: string) =>
-    setMessages((prev) => prev.map((m) => (m.id === id ? { ...m, content } : m)));
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
+
+  const patchMessage = (id: string, patch: Partial<ChatMessage>) =>
+    setMessages((prev) => prev.map((m) => (m.id === id ? { ...m, ...patch } : m)));
 
   const send = useCallback(
     async (text: string) => {
       const content = text.trim();
-      if (!content || isStreaming) return;
+      if (!content) return;
+
+      controllerRef.current?.abort();
+      const controller = new AbortController();
+      controllerRef.current = controller;
 
       const userMessage: ChatMessage = { id: createId(), role: "user", content };
       const replyId = createId();
-      const history = [...messages, userMessage].slice(-HISTORY_LIMIT);
+      const history = buildHistory([...messagesRef.current, userMessage]);
 
-      setMessages((prev) => [...prev, userMessage, { id: replyId, role: "assistant", content: "" }]);
+      setMessages((prev) => [
+        ...prev.filter((m) => m.content || m.role === "user"),
+        userMessage,
+        { id: replyId, role: "assistant", content: "" },
+      ]);
       setIsStreaming(true);
 
-      const controller = new AbortController();
-      controllerRef.current = controller;
       let reply = "";
-
       try {
-        const res = await fetch("/api/agent", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: history.map(({ role, content: body }) => ({ role, content: body })) }),
-          signal: controller.signal,
+        reply = await streamTripzyReply({ messages: history, page: pathname }, controller.signal, (partial) => {
+          reply = partial;
+          patchMessage(replyId, { content: partial });
         });
-        if (!res.ok || !res.body) throw new Error(res.statusText);
-
-        const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          reply += value;
-          updateMessage(replyId, reply);
-        }
-        if (!reply) updateMessage(replyId, tripzyCopy.errorFallback);
+        if (!reply) patchMessage(replyId, { content: tripzyCopy.errorFallback, failed: true });
       } catch (error) {
-        if ((error as Error).name !== "AbortError") updateMessage(replyId, reply || tripzyCopy.errorFallback);
-        else if (!reply) setMessages((prev) => prev.filter((m) => m.id !== replyId));
+        if ((error as Error).name !== "AbortError") {
+          patchMessage(replyId, reply ? {} : { content: tripzyCopy.errorFallback, failed: true });
+        } else if (!reply) {
+          setMessages((prev) => prev.filter((m) => m.id !== replyId));
+        }
       } finally {
-        controllerRef.current = null;
-        setIsStreaming(false);
+        if (controllerRef.current === controller) {
+          controllerRef.current = null;
+          setIsStreaming(false);
+        }
       }
     },
-    [messages, isStreaming],
+    [pathname],
   );
 
   const stop = useCallback(() => controllerRef.current?.abort(), []);
 
   const reset = useCallback(() => {
     controllerRef.current?.abort();
+    controllerRef.current = null;
+    setIsStreaming(false);
     setMessages([]);
   }, []);
 
