@@ -8,6 +8,8 @@ import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { SocialFloat } from "@/components/layout/SocialFloat";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
+import { AiAgentDrawer } from "@/components/ai/AiAgentDrawer";
+import { AiAgentProvider } from "@/components/ai/AiAgentContext";
 import { siteConfig } from "@/content/site";
 import { getHeaderData } from "@/lib/data/navigation";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
@@ -104,18 +106,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-dvh pb-[calc(4.25rem+env(safe-area-inset-bottom))] md:pb-0">
         <ThemeProvider>
           <MotionProvider>
-            <a
-              href="#main"
-              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-60 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
-            >
-              Skip to content
-            </a>
-            <Header data={getHeaderData()} />
-            <main id="main">{children}</main>
-            <Footer />
-            <SocialFloat />
-            <ScrollToTop />
-            <MobileActionBar />
+            <AiAgentProvider>
+              <a
+                href="#main"
+                className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-60 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
+              >
+                Skip to content
+              </a>
+              <Header data={getHeaderData()} />
+              <main id="main">{children}</main>
+              <Footer />
+              <SocialFloat />
+              <ScrollToTop />
+              <AiAgentDrawer />
+              <MobileActionBar />
+            </AiAgentProvider>
           </MotionProvider>
         </ThemeProvider>
         <Analytics />
