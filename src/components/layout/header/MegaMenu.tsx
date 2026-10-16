@@ -87,9 +87,14 @@ export function MegaMenu({ data, label }: { data: HeaderData; label: string }) {
 
         <div className="container-x flex items-center justify-between border-t border-line py-4 text-[13px]">
           <span className="text-slate">{data.groups.reduce((total, group) => total + group.items.length, 0)} handpicked destinations across the hills</span>
-          <Link href="/destinations" onClick={dismiss} className="inline-flex items-center gap-1.5 font-medium hover:text-accent">
-            Browse all destinations <ArrowUpRight className="size-3.5" />
-          </Link>
+          <div className="flex items-center gap-5">
+            <Link href="/gallery" onClick={dismiss} className="inline-flex items-center gap-1.5 font-medium hover:text-accent">
+              Photo gallery <ArrowUpRight className="size-3.5" />
+            </Link>
+            <Link href="/destinations" onClick={dismiss} className="inline-flex items-center gap-1.5 font-medium hover:text-accent">
+              Browse all destinations <ArrowUpRight className="size-3.5" />
+            </Link>
+          </div>
         </div>
       </div>
       <div className={styles.scrim} aria-hidden />
