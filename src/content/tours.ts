@@ -82,6 +82,7 @@ export const tourContent: TourContent[] = [
     groupSize: "Private trip",
     bestMonths: [3, 4, 5, 6, 10, 11, 12, 1],
     cover: { destination: "dhanaulti", index: 0 },
+    featured: true,
     itinerary: [
       { day: 1, title: "Dehradun to Mussoorie", description: "Drive up, Kempty Falls and an evening on Mall Road.", image: { destination: "mussoorie", index: 0 } },
       { day: 2, title: "Landour & Dhanaulti", description: "Morning in Landour, then on to Dhanaulti's Eco Park and Surkanda Devi.", image: { destination: "dhanaulti", index: 1 } },
