@@ -1,3 +1,5 @@
+"use client";
+
 import { RevealImage } from "@/components/motion/RevealImage";
 import { AppImage } from "@/components/ui/AppImage";
 import { REVEAL } from "@/lib/motion/tokens";

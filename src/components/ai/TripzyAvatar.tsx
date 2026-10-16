@@ -1,47 +1,30 @@
-"use client";
-
 import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
 
+const SIZES = {
+  sm: { className: "size-5", px: 20 },
+  md: { className: "size-8", px: 32 },
+  lg: { className: "size-10", px: 40 },
+} as const;
+
 interface TripzyAvatarProps {
-  size?: number;
+  size?: keyof typeof SIZES;
   className?: string;
-  withPulse?: boolean;
 }
 
-export function TripzyAvatar({ size = 44, className, withPulse = false }: TripzyAvatarProps) {
-  return (
-    <div
-      className={cn(
-        "relative shrink-0 overflow-hidden rounded-full aspect-square",
-        className
-      )}
-      style={{ width: size, height: size }}
-    >
-      {/* Light theme logo */}
-      <Image
-        src="/tripzy-light.png"
-        alt="Tripzy AI"
-        width={size * 2}
-        height={size * 2}
-        className="block dark:hidden size-full object-cover rounded-full"
-        priority
-      />
+export function TripzyAvatar({ size = "md", className }: TripzyAvatarProps) {
+  const { className: sizeClass, px } = SIZES[size];
 
-      {/* Dark theme logo */}
+  return (
+    <span className={cn("relative block shrink-0 overflow-hidden rounded-full bg-surface", sizeClass, className)}>
+      <Image src="/tripzy-light.png" alt="" width={px * 2} height={px * 2} className="size-full object-cover dark:hidden" />
       <Image
         src="/tripzy-dark.png"
-        alt="Tripzy AI"
-        width={size * 2}
-        height={size * 2}
-        className="hidden dark:block size-full object-cover rounded-full"
-        priority
+        alt=""
+        width={px * 2}
+        height={px * 2}
+        className="hidden size-full object-cover dark:block"
       />
-
-      {/* Active pulse dot if enabled */}
-      {withPulse && (
-        <span className="absolute bottom-0 right-0 size-3 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-950" />
-      )}
-    </div>
+    </span>
   );
 }

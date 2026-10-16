@@ -37,23 +37,21 @@ export function SocialFloat() {
 
   return (
     <div className="fixed right-6 bottom-6 z-40 hidden flex-col items-end gap-3 md:flex">
-      {/* Tripzy AI Floater Button - Pure circular logo icon button without heavy green pill background */}
       <motion.button
         type="button"
         onClick={openAgent}
-        aria-label="Ask Tripzy AI"
+        aria-label="Plan with Tripzy"
         initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6, ease: CUBIC.outExpo, delay: 0.7 }}
-        className="group relative flex h-11 sm:h-12 items-center rounded-full bg-white dark:bg-zinc-900 shadow-xl shadow-black/20 hover:shadow-emerald-500/30 transition-all duration-300 cursor-pointer p-1"
+        className="group flex h-12 items-center rounded-full border border-line bg-surface p-1 shadow-lg shadow-black/15 cursor-pointer"
       >
-        <TripzyAvatar size={40} />
-        <span className="max-w-0 overflow-hidden text-sm font-semibold text-slate-800 dark:text-zinc-100 whitespace-nowrap transition-[max-width,margin] duration-500 ease-out-expo group-hover:mx-3 group-hover:max-w-44">
-          Ask Tripzy AI
+        <TripzyAvatar size="lg" />
+        <span className="max-w-0 overflow-hidden text-sm font-medium whitespace-nowrap text-ink transition-[max-width,margin] duration-500 ease-out-expo group-hover:mx-3 group-hover:max-w-44">
+          Plan with Tripzy
         </span>
       </motion.button>
 
-      {/* WhatsApp & Instagram Float Links */}
       {LINKS.map(({ href, label, Icon, className }, index) => (
         <motion.a
           key={label}
