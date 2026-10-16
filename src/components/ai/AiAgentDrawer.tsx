@@ -26,7 +26,7 @@ export function AiAgentDrawer() {
     if ((event.target as HTMLElement).closest('a[href^="/"]')) closeAgent();
   };
 
-  const hasConversation = messages.length > 1;
+  const hasConversation = messages.length > 0;
 
   return (
     <AnimatePresence>
@@ -41,7 +41,7 @@ export function AiAgentDrawer() {
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.3, ease: CUBIC.outExpo }}
           onClickCapture={closeOnInternalLink}
-          className="fixed inset-0 z-50 flex flex-col bg-snow pt-[env(safe-area-inset-top)] sm:inset-auto sm:right-6 sm:bottom-6 sm:h-[min(42rem,calc(100dvh-3rem))] sm:w-100 sm:overflow-hidden sm:rounded-2xl sm:border sm:border-line sm:pt-0 sm:shadow-2xl sm:shadow-black/20"
+          className="fixed inset-0 z-50 flex flex-col bg-snow sm:inset-auto sm:right-6 sm:bottom-6 sm:h-[min(42rem,calc(100dvh-3rem))] sm:w-100 sm:overflow-hidden sm:rounded-2xl sm:border sm:border-line sm:shadow-2xl sm:shadow-black/20"
         >
           <ChatHeader canReset={hasConversation} onReset={reset} onClose={closeAgent} />
           <ChatMessageList messages={messages} onPick={send} />

@@ -8,10 +8,8 @@ const HISTORY_LIMIT = 10;
 
 const createId = () => crypto.randomUUID();
 
-const greeting = (): ChatMessage => ({ id: "greeting", role: "assistant", content: tripzyCopy.greeting });
-
 export function useTripzyChat() {
-  const [messages, setMessages] = useState<ChatMessage[]>(() => [greeting()]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
   const controllerRef = useRef<AbortController | null>(null);
 
@@ -25,7 +23,7 @@ export function useTripzyChat() {
 
       const userMessage: ChatMessage = { id: createId(), role: "user", content };
       const replyId = createId();
-      const history = [...messages.filter((m) => m.id !== "greeting"), userMessage].slice(-HISTORY_LIMIT);
+      const history = [...messages, userMessage].slice(-HISTORY_LIMIT);
 
       setMessages((prev) => [...prev, userMessage, { id: replyId, role: "assistant", content: "" }]);
       setIsStreaming(true);
@@ -66,7 +64,7 @@ export function useTripzyChat() {
 
   const reset = useCallback(() => {
     controllerRef.current?.abort();
-    setMessages([greeting()]);
+    setMessages([]);
   }, []);
 
   useEffect(() => () => controllerRef.current?.abort(), []);

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import type { ChatMessage } from "@/types/chat";
 import { ChatMessageItem } from "./ChatMessageItem";
-import { ChatSuggestions } from "./ChatSuggestions";
+import { ChatWelcome } from "./ChatWelcome";
 
 const STICK_THRESHOLD = 80;
 
@@ -34,10 +34,10 @@ export function ChatMessageList({ messages, onPick }: ChatMessageListProps) {
       aria-live="polite"
       className="flex-1 space-y-5 overflow-y-auto overscroll-contain px-4 py-5 text-[14.5px] leading-relaxed sm:px-5"
     >
+      {messages.length === 0 && <ChatWelcome onPick={onPick} />}
       {messages.map((message) => (
         <ChatMessageItem key={message.id} message={message} />
       ))}
-      {messages.length === 1 && <ChatSuggestions onPick={onPick} />}
     </div>
   );
 }

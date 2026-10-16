@@ -9,20 +9,25 @@ interface ChatHeaderProps {
 }
 
 const iconButton =
-  "grid size-9 place-items-center rounded-full text-slate transition-colors hover:bg-paper hover:text-ink cursor-pointer";
+  "grid size-9 place-items-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white cursor-pointer";
 
 export function ChatHeader({ canReset, onReset, onClose }: ChatHeaderProps) {
   return (
-    <header className="flex items-center gap-3 border-b border-line px-4 py-3 sm:px-5">
-      <TripzyAvatar size="lg" />
+    <header className="flex items-center gap-3 bg-night px-4 pt-[calc(0.875rem+env(safe-area-inset-top))] pb-3.5 text-white sm:px-5 sm:pt-3.5">
+      <span className="relative">
+        <TripzyAvatar size="lg" className="ring-2 ring-accent-light/40" />
+        <span className="absolute right-0 bottom-0 size-2.5 rounded-full bg-[#22c55e] ring-2 ring-night" aria-hidden />
+      </span>
       <div className="min-w-0 flex-1">
-        <h2 id="tripzy-title" className="text-[15px] font-semibold tracking-tight text-ink">
-          {tripzyCopy.name}
-        </h2>
-        <p className="flex items-center gap-1.5 text-xs text-slate">
-          <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-          {tripzyCopy.role}
-        </p>
+        <div className="flex items-center gap-2">
+          <h2 id="tripzy-title" className="text-[15px] font-semibold tracking-tight">
+            {tripzyCopy.name}
+          </h2>
+          <span className="rounded-full border border-accent-light/40 px-1.5 py-px text-[10px] font-semibold tracking-wider text-accent-light">
+            {tripzyCopy.badge}
+          </span>
+        </div>
+        <p className="text-xs text-white/55">{tripzyCopy.status}</p>
       </div>
       {canReset && (
         <button type="button" onClick={onReset} aria-label="Start a new conversation" className={iconButton}>

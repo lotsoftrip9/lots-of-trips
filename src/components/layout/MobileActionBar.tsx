@@ -49,7 +49,7 @@ export function MobileActionBar() {
           onClick={openAgent}
           className="flex flex-col items-center gap-1 rounded-xl py-1 text-[10px] font-medium text-ink-soft active:bg-paper cursor-pointer"
         >
-          <TripzyAvatar size="sm" />
+          <TripzyAvatar size="sm" bare className="-my-1" />
           Tripzy
         </button>
 
