@@ -16,7 +16,6 @@ import { getDestination } from "@/lib/data/destinations";
 import { getTourFaqs } from "@/lib/data/guides";
 import { getTestimonialForTour } from "@/lib/data/testimonials";
 import { getRelatedTours, getTour, getTours } from "@/lib/data/tours";
-import { formatINR } from "@/lib/utils/format";
 import { buildFaqSchema } from "@/lib/utils/schema";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 
@@ -30,7 +29,7 @@ export async function generateMetadata({ params }: PageProps<"/tours/[slug]">): 
   if (!tour) return {};
 
   const title = `${tour.title} (${tour.durationDays} Days Itinerary) — Lots of Trips`;
-  const description = `${tour.summary} Includes stays, private car transfers, sightseeing, and 24/7 on-trip assistance. From ${formatINR(tour.priceFromINR)} per person.`;
+  const description = `${tour.summary} Includes stays, private car transfers, sightseeing, and 24/7 on-trip assistance. Custom quote on request.`;
   const coverImage = tour.cover.src;
 
   return {

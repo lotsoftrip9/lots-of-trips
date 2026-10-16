@@ -1,4 +1,4 @@
-import { formatINR, pluralize, stateLabel } from "@/lib/utils/format";
+import { pluralize, stateLabel } from "@/lib/utils/format";
 import type { ChatCardIndex, ChatLinkCard } from "@/types/chat";
 import { getDestinations } from "./destinations";
 import { getTours } from "./tours";
@@ -14,7 +14,7 @@ export function getChatCardIndex(): ChatCardIndex {
   const tourCards: ChatLinkCard[] = getTours().map((t) => ({
     href: `/tours/${t.slug}`,
     title: t.title,
-    meta: `${pluralize(t.durationDays, "day")} · from ${formatINR(t.priceFromINR)}`,
+    meta: `${pluralize(t.durationDays, "day")} · Quote on request`,
     image: t.cover,
   }));
 

@@ -5,7 +5,7 @@ import { AppImage } from "@/components/ui/AppImage";
 import { SaveTripButton } from "@/components/ui/SaveTripButton";
 import { pricingCopy } from "@/content/site";
 import { cn } from "@/lib/utils/cn";
-import { difficultyLabel, formatINR } from "@/lib/utils/format";
+import { difficultyLabel } from "@/lib/utils/format";
 import { buildPriceEnquiryLink } from "@/lib/utils/whatsapp";
 import type { Tour } from "@/types/tour";
 
@@ -58,7 +58,7 @@ export function TourHero({ tour, places }: { tour: Tour; places: string[] }) {
               <FaWhatsapp className="size-5 shrink-0 text-[#25d366]" aria-hidden />
               <span className="flex-1">
                 <span className="block text-[12px] text-slate">
-                  {pricingCopy.from} {formatINR(tour.priceFromINR)} {pricingCopy.perPerson}
+                  {pricingCopy.label}
                 </span>
                 <span className="block text-[15px] font-semibold">{pricingCopy.exactQuote}</span>
               </span>
