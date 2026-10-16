@@ -17,24 +17,39 @@ const INTERVAL_MS = 5000;
 
 export function HeroSlideshow({ slides, children }: { slides: HeroSlide[]; children: ReactNode }) {
   const [active, setActive] = useState(0);
+  const [previous, setPrevious] = useState<number | null>(null);
   const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   useDarkScrollbar(sectionRef);
 
   useEffect(() => {
     if (reducedMotion || slides.length < 2) return;
-    const timer = window.setTimeout(() => setActive((index) => (index + 1) % slides.length), INTERVAL_MS);
+    const timer = window.setTimeout(() => {
+      setPrevious(active);
+      setActive((index) => (index + 1) % slides.length);
+    }, INTERVAL_MS);
     return () => window.clearTimeout(timer);
   }, [active, reducedMotion, slides.length]);
+
+  useEffect(() => {
+    if (previous === null) return;
+    const timer = window.setTimeout(() => setPrevious(null), 1200);
+    return () => window.clearTimeout(timer);
+  }, [previous]);
+
+  const next = slides.length > 1 ? (active + 1) % slides.length : null;
+  const visibleIndexes = new Set([active, previous, next].filter((index): index is number => index !== null));
 
   return (
     <section ref={sectionRef} data-header-overlay className="relative isolate flex flex-col overflow-hidden bg-night text-white md:min-h-svh">
       <div className="absolute inset-0 -z-10" aria-hidden>
-        {slides.map((slide, index) => (
-          <div key={slide.image.src} className={styles.slide} data-active={index === active || undefined}>
-            <AppImage image={slide.image} sizes="100vw" preload={index === 0} alt="" />
-          </div>
-        ))}
+        {slides.map((slide, index) =>
+          visibleIndexes.has(index) ? (
+            <div key={slide.image.src} className={styles.slide} data-active={index === active || undefined}>
+              <AppImage image={slide.image} sizes="100vw" preload={index === 0 || index === next} alt="" />
+            </div>
+          ) : null,
+        )}
       </div>
       <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-black/45 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-[70%] bg-linear-to-t from-black/75 via-black/30 to-transparent md:h-[60%]" />
