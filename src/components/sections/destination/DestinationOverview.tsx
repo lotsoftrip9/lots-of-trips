@@ -58,6 +58,7 @@ export function DestinationOverview({ destination }: { destination: Destination 
               <ButtonLink
                 href={buildPriceEnquiryLink(`a trip to ${destination.name}`)}
                 external
+                data-va-cta="destination-price-whatsapp"
                 icon={<FaWhatsapp className="size-4 text-[#25d366]" />}
               >
                 {pricingCopy.cta}

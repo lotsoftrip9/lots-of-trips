@@ -58,10 +58,17 @@ export const analytics = {
   siteId: "EHU8K8SymLZDnOsT",
 };
 
+export const searchVerification = {
+  google: "vGqmkgf6XXmC8QRp46nJOYrAncXngiIOPEgt1kEbhDA",
+};
+
 export const pricingCopy = {
   label: "Price on request",
   cta: "Get price on WhatsApp",
   short: "Ask for price",
+  from: "From",
+  perPerson: "per person",
+  exactQuote: "Get exact quote",
 };
 
 export const quoteAssurance = {

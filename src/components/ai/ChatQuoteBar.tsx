@@ -10,6 +10,7 @@ export function ChatQuoteBar() {
         href={buildWhatsAppMessageLink(tripzyCopy.quoteMessage)}
         target="_blank"
         rel="noopener noreferrer"
+        data-va-cta="tripzy-quote-whatsapp"
         className="flex items-center gap-1.5 rounded-full bg-[#25d366] px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#1ebe5a]"
       >
         <FaWhatsapp className="size-3.5" aria-hidden />

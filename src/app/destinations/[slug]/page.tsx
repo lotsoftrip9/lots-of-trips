@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { AskTripzy } from "@/components/ai/AskTripzy";
 import { DestinationHero } from "@/components/sections/destination/DestinationHero";
 import { DestinationLocation } from "@/components/sections/destination/DestinationLocation";
 import { DestinationOverview } from "@/components/sections/destination/DestinationOverview";
@@ -12,6 +13,7 @@ import { FaqSection } from "@/components/sections/shared/FaqSection";
 import { PlanCta } from "@/components/sections/shared/PlanCta";
 import { TourGrid } from "@/components/sections/shared/TourGrid";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { destinationQuestions } from "@/content/tripzy";
 import { getAdjacentDestination, getDestination, getDestinations } from "@/lib/data/destinations";
 import { getDestinationFaqs, getGettingThere } from "@/lib/data/guides";
 import { getToursForDestination } from "@/lib/data/tours";
@@ -133,6 +135,9 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
       <JsonLd data={schemas} />
       <DestinationHero destination={destination} />
       <DestinationOverview destination={destination} />
+      <div className="container-x pb-section">
+        <AskTripzy questions={destinationQuestions(destination.name)} />
+      </div>
       <LiveWeather destination={destination} />
       <DestinationLocation destination={destination} />
       <GettingThere name={destination.name} legs={getGettingThere(destination.slug)} />

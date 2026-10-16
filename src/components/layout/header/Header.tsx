@@ -78,7 +78,7 @@ export function Header({ data }: { data: HeaderData }) {
             <SearchMenu data={data.search} onOpen={closeMenu} className={styles.searchButton} />
             <SavedTripsMenu className={styles.savedButton} />
             <ThemeToggle className={styles.iconButton} />
-            <Link href="/contact" className={styles.cta}>
+            <Link href="/contact" data-va-cta="header-plan-trip" className={styles.cta}>
               Plan a trip
             </Link>
             <MenuToggle open={open} onToggle={toggle} />

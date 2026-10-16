@@ -2,7 +2,7 @@
 
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
-import { useState, type MouseEvent } from "react";
+import { useRef, useState, type FocusEvent, type KeyboardEvent, type MouseEvent } from "react";
 import { AppImage } from "@/components/ui/AppImage";
 import { cn } from "@/lib/utils/cn";
 import type { HeaderData } from "@/types/site";
@@ -10,6 +10,8 @@ import styles from "./MegaMenu.module.css";
 
 export function MegaMenu({ data, label }: { data: HeaderData; label: string }) {
   const [dismissed, setDismissed] = useState(false);
+  const [escaped, setEscaped] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   const dismiss = (event: MouseEvent<HTMLAnchorElement>) => {
     event.currentTarget.blur();
@@ -17,11 +19,33 @@ export function MegaMenu({ data, label }: { data: HeaderData; label: string }) {
     window.setTimeout(() => setDismissed(false), 400);
   };
 
+  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "Escape") return;
+    setEscaped(true);
+    triggerRef.current?.focus();
+  };
+
+  const onFocusCapture = (event: FocusEvent<HTMLDivElement>) => {
+    if ((event.target as Node) !== triggerRef.current) setEscaped(false);
+  };
+
+  const onBlur = (event: FocusEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) setEscaped(false);
+  };
+
   return (
-    <div className={cn(styles.mega, "group flex h-full items-center", dismissed && styles.dismissed)}>
+    <div
+      onKeyDown={onKeyDown}
+      onFocusCapture={onFocusCapture}
+      onBlur={onBlur}
+      className={cn(styles.mega, "group flex h-full items-center", (dismissed || escaped) && styles.dismissed)}
+    >
       <button
+        ref={triggerRef}
         type="button"
+        onClick={(event) => event.detail === 0 && setEscaped((value) => !value)}
         aria-haspopup="true"
+        aria-expanded={!escaped}
         className="inline-flex items-center gap-1.5 px-[0.9rem] py-2 text-[12px] font-medium tracking-[0.16em] uppercase"
       >
         {label}
@@ -41,7 +65,7 @@ export function MegaMenu({ data, label }: { data: HeaderData; label: string }) {
                 className={cn(styles.reveal, "group/head eyebrow inline-flex items-center gap-2 text-saffron hover:text-ink")}
               >
                 {group.label}
-                <ArrowUpRight className="size-3 transition-transform duration-300 group-hover/head:translate-x-0.5 group-hover/head:-translate-y-0.5" />
+                <ArrowUpRight className="size-3 transition-transform duration-300 group-hover/head:translate-x-0.5 group-hover/head:-translate-y-0.5" aria-hidden />
               </Link>
               <ul className="mt-5 grid grid-cols-2 gap-x-8 gap-y-3">
                 {group.items.map((item) => (
@@ -79,7 +103,7 @@ export function MegaMenu({ data, label }: { data: HeaderData; label: string }) {
                 <p className="text-[12px] text-slate">{data.feature.meta}</p>
               </div>
               <span className="grid size-8 place-items-center rounded-full bg-ink text-snow transition-transform duration-300 group-hover/feature:rotate-45">
-                <ArrowUpRight className="size-3.5" />
+                <ArrowUpRight className="size-3.5" aria-hidden />
               </span>
             </div>
           </Link>
@@ -89,10 +113,10 @@ export function MegaMenu({ data, label }: { data: HeaderData; label: string }) {
           <span className="text-slate">{data.groups.reduce((total, group) => total + group.items.length, 0)} handpicked destinations across the hills</span>
           <div className="flex items-center gap-5">
             <Link href="/gallery" onClick={dismiss} className="inline-flex items-center gap-1.5 font-medium hover:text-accent">
-              Photo gallery <ArrowUpRight className="size-3.5" />
+              Photo gallery <ArrowUpRight className="size-3.5" aria-hidden />
             </Link>
             <Link href="/destinations" onClick={dismiss} className="inline-flex items-center gap-1.5 font-medium hover:text-accent">
-              Browse all destinations <ArrowUpRight className="size-3.5" />
+              Browse all destinations <ArrowUpRight className="size-3.5" aria-hidden />
             </Link>
           </div>
         </div>

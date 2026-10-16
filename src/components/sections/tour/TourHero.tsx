@@ -5,7 +5,7 @@ import { AppImage } from "@/components/ui/AppImage";
 import { SaveTripButton } from "@/components/ui/SaveTripButton";
 import { pricingCopy } from "@/content/site";
 import { cn } from "@/lib/utils/cn";
-import { difficultyLabel } from "@/lib/utils/format";
+import { difficultyLabel, formatINR } from "@/lib/utils/format";
 import { buildPriceEnquiryLink } from "@/lib/utils/whatsapp";
 import type { Tour } from "@/types/tour";
 
@@ -52,12 +52,15 @@ export function TourHero({ tour, places }: { tour: Tour; places: string[] }) {
               href={buildPriceEnquiryLink(`the ${tour.title} journey`)}
               target="_blank"
               rel="noopener noreferrer"
+              data-va-cta="tour-price-whatsapp"
               className="group flex h-full items-center gap-3 px-5 py-5 transition-colors hover:bg-surface"
             >
               <FaWhatsapp className="size-5 shrink-0 text-[#25d366]" aria-hidden />
               <span className="flex-1">
-                <span className="block text-[12px] text-slate">{pricingCopy.label}</span>
-                <span className="block text-[15px] font-semibold">{pricingCopy.short}</span>
+                <span className="block text-[12px] text-slate">
+                  {pricingCopy.from} {formatINR(tour.priceFromINR)} {pricingCopy.perPerson}
+                </span>
+                <span className="block text-[15px] font-semibold">{pricingCopy.exactQuote}</span>
               </span>
               <ArrowUpRight
                 className="size-4 text-slate transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

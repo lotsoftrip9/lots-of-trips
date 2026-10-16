@@ -36,6 +36,7 @@ export function MobileActionBar() {
           <a
             key={label}
             href={href}
+            data-va-cta={`mobile-${label.toLowerCase()}`}
             {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="flex flex-col items-center gap-1 rounded-xl py-1 text-[10px] font-medium text-ink-soft active:bg-paper"
           >
@@ -46,7 +47,9 @@ export function MobileActionBar() {
 
         <button
           type="button"
-          onClick={openAgent}
+          onClick={() => openAgent()}
+          aria-haspopup="dialog"
+          data-va-cta="mobile-tripzy"
           className="flex flex-col items-center gap-1 rounded-xl py-1 text-[10px] font-medium text-ink-soft active:bg-paper cursor-pointer"
         >
           <TripzyAvatar size="sm" bare className="-my-1" />
@@ -55,6 +58,7 @@ export function MobileActionBar() {
 
         <Link
           href="/contact"
+          data-va-cta="mobile-plan-trip"
           className="flex flex-col items-center gap-1 rounded-xl bg-ink py-1 text-[10px] font-medium text-snow active:bg-ink-soft"
         >
           <CalendarCheck className="size-4.5" aria-hidden />

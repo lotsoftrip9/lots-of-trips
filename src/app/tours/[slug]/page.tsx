@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { AskTripzy } from "@/components/ai/AskTripzy";
 import { DestinationGrid } from "@/components/sections/destinations/DestinationGrid";
 import { FaqSection } from "@/components/sections/shared/FaqSection";
 import { HowItWorks } from "@/components/sections/shared/how-it-works/HowItWorks";
@@ -8,10 +9,14 @@ import { RelatedTours } from "@/components/sections/tour/RelatedTours";
 import { TourEnquiry } from "@/components/sections/tour/TourEnquiry";
 import { TourHero } from "@/components/sections/tour/TourHero";
 import { TourInclusions } from "@/components/sections/tour/TourInclusions";
+import { TourReview } from "@/components/sections/tour/TourReview";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { tourQuestions } from "@/content/tripzy";
 import { getDestination } from "@/lib/data/destinations";
 import { getTourFaqs } from "@/lib/data/guides";
+import { getTestimonialForTour } from "@/lib/data/testimonials";
 import { getRelatedTours, getTour, getTours } from "@/lib/data/tours";
+import { formatINR } from "@/lib/utils/format";
 import { buildFaqSchema } from "@/lib/utils/schema";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 
@@ -25,7 +30,7 @@ export async function generateMetadata({ params }: PageProps<"/tours/[slug]">): 
   if (!tour) return {};
 
   const title = `${tour.title} (${tour.durationDays} Days Itinerary) — Lots of Trips`;
-  const description = `${tour.summary} Includes stays, private car transfers, sightseeing, and 24/7 on-trip assistance. Pricing shared on request over WhatsApp.`;
+  const description = `${tour.summary} Includes stays, private car transfers, sightseeing, and 24/7 on-trip assistance. From ${formatINR(tour.priceFromINR)} per person.`;
   const coverImage = tour.cover.src;
 
   return {
@@ -132,6 +137,9 @@ export default async function TourPage({ params }: PageProps<"/tours/[slug]">) {
     <>
       <JsonLd data={schemas} />
       <TourHero tour={tour} places={destinations.map((item) => item.name)} />
+      <div className="container-x mt-6">
+        <AskTripzy questions={tourQuestions(tour.title, tour.durationDays)} />
+      </div>
       <Itinerary days={tour.itinerary} slug={tour.slug} title={tour.title} />
       <TourInclusions inclusions={tour.inclusions} exclusions={tour.exclusions} />
       <section className="container-x pb-section">
@@ -142,6 +150,7 @@ export default async function TourPage({ params }: PageProps<"/tours/[slug]">) {
       </section>
       <HowItWorks />
       <FaqSection title="Before you book" faqs={faqs} subject={`the ${tour.title} journey`} />
+      <TourReview testimonial={getTestimonialForTour(tour.slug)} />
       <TourEnquiry tour={tour} places={destinations.map((item) => item.name)} />
       <RelatedTours tours={related} />
     </>

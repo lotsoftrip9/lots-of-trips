@@ -3,21 +3,24 @@
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { tripzyCopy } from "@/content/tripzy";
+import { trackEvent } from "@/lib/analytics/track";
 import { buildHistory, streamTripzyReply } from "@/lib/ai/client";
+import { loadChat, saveChat } from "@/lib/ai/storage";
 import type { ChatMessage } from "@/types/chat";
 
 const createId = () => crypto.randomUUID();
 
 export function useTripzyChat() {
   const pathname = usePathname();
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>(loadChat);
   const [isStreaming, setIsStreaming] = useState(false);
   const messagesRef = useRef<ChatMessage[]>([]);
   const controllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
     messagesRef.current = messages;
-  }, [messages]);
+    if (!isStreaming) saveChat(messages);
+  }, [messages, isStreaming]);
 
   const patchMessage = (id: string, patch: Partial<ChatMessage>) =>
     setMessages((prev) => prev.map((m) => (m.id === id ? { ...m, ...patch } : m)));
@@ -41,6 +44,7 @@ export function useTripzyChat() {
         { id: replyId, role: "assistant", content: "" },
       ]);
       setIsStreaming(true);
+      trackEvent("tripzy_message", { page: pathname, turn: history.length });
 
       let reply = "";
       try {

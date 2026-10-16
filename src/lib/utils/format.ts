@@ -22,6 +22,8 @@ const numberFormat = new Intl.NumberFormat("en-IN");
 
 export const formatAltitude = (metres: number) => `${numberFormat.format(metres)} m`;
 
+export const formatINR = (amount: number) => `₹${numberFormat.format(amount)}`;
+
 export function formatCoordinates({ lat, lng }: Coordinates) {
   const latLabel = `${Math.abs(lat).toFixed(4)}° ${lat >= 0 ? "N" : "S"}`;
   const lngLabel = `${Math.abs(lng).toFixed(4)}° ${lng >= 0 ? "E" : "W"}`;

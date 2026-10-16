@@ -53,6 +53,7 @@ export function DestinationHero({ destination }: { destination: Destination }) {
               <ButtonLink
                 href={buildPriceEnquiryLink(`a trip to ${destination.name}`)}
                 external
+                data-va-cta="destination-hero-price-whatsapp"
                 variant="light"
                 icon={<FaWhatsapp className="size-4 text-[#25d366]" />}
               >

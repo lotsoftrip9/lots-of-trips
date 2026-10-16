@@ -11,9 +11,30 @@ export const tripzyCopy = {
   quoteLabel: "Ready for an exact price?",
   quoteCta: "Get a quote",
   quoteMessage: "Hi Lots of Trips! I was planning a trip with Tripzy on your website. Could you share a quote?",
+  sharePlan: "Send plan on WhatsApp",
+  sharePlanIntro: "Hi Lots of Trips! Tripzy suggested this plan on your website. Could you share a quote for it?",
+  copy: "Copy",
+  copied: "Copied",
   errorFallback: "I couldn't reply just now. Please try again, or message us on WhatsApp.",
   disclaimer: "AI answers can be wrong. Our team confirms every plan.",
 };
+
+export const askTripzyCopy = {
+  title: "Questions about this trip?",
+  subtitle: "Ask Tripzy, our AI trip planner. Answers in seconds.",
+};
+
+export const tourQuestions = (title: string, days: number) => [
+  `Is ${title} a good trip for this month?`,
+  `Can ${title} be done in ${Math.max(days - 2, 2)} days?`,
+  `Is ${title} comfortable with kids or elderly parents?`,
+];
+
+export const destinationQuestions = (name: string) => [
+  `How many days do I need in ${name}?`,
+  `What's the weather like in ${name} this month?`,
+  `How do I reach ${name} and where should I stay?`,
+];
 
 export type TripzySuggestionIcon = "mountain" | "waves" | "trees" | "paw";
 

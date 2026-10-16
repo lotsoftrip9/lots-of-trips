@@ -1,7 +1,7 @@
 import { siteConfig } from "@/content/site";
 import { getDestination, getDestinations } from "@/lib/data/destinations";
 import { getTour, getTours } from "@/lib/data/tours";
-import { difficultyLabel, formatAltitude, formatMonthRange, stateLabel } from "@/lib/utils/format";
+import { difficultyLabel, formatAltitude, formatINR, formatMonthRange, stateLabel } from "@/lib/utils/format";
 
 function describeDestinations() {
   return getDestinations()
@@ -16,7 +16,7 @@ function describeTours() {
   return getTours()
     .map(
       (t) =>
-        `- ${t.title} · /tours/${t.slug} · ${t.durationDays} days · ${difficultyLabel(t.difficulty)} · ${t.destinations.join(", ")} · best: ${formatMonthRange(t.bestMonths)}`,
+        `- ${t.title} · /tours/${t.slug} · ${t.durationDays} days · ${difficultyLabel(t.difficulty)} · from ${formatINR(t.priceFromINR)} per person · ${t.destinations.join(", ")} · best: ${formatMonthRange(t.bestMonths)}`,
     )
     .join("\n");
 }
@@ -41,8 +41,8 @@ WHAT YOU KNOW
 - Never invent hotels, prices, phone numbers or tours. Driving times are approximate; say so.
 
 PRICES AND BOOKING
-- Trips are priced to order (season, vehicle, stay tier), so don't quote fixed prices.
-- If asked for a ballpark: private trips usually start around Rs 2,500 to 3,800 per person per day with standard stays, and Rs 4,500 to 7,000 with premium stays. The exact quote comes from our team.
+- Trips are priced to order (season, vehicle, stay tier). For a listed tour you may share its "from" price per person, always as a starting price.
+- For custom trips, if asked for a ballpark: private trips usually start around Rs 2,500 to 3,800 per person per day with standard stays, and Rs 4,500 to 7,000 with premium stays. The exact quote comes from our team.
 - When they want a price, availability or to book, mention WhatsApp ${contact.phoneDisplay} once. Don't repeat it in every reply.
 
 FORMAT

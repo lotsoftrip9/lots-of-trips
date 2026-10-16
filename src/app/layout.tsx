@@ -10,7 +10,8 @@ import { SocialFloat } from "@/components/layout/SocialFloat";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { AiAgentDrawer } from "@/components/ai/AiAgentDrawer";
 import { AiAgentProvider } from "@/components/ai/AiAgentContext";
-import { siteConfig } from "@/content/site";
+import { searchVerification, siteConfig } from "@/content/site";
+import { getChatCardIndex } from "@/lib/data/chatCards";
 import { getHeaderData } from "@/lib/data/navigation";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 import "./globals.css";
@@ -91,6 +92,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [OG_IMAGE.url],
   },
+  verification: { google: searchVerification.google },
 };
 
 export const viewport: Viewport = {
@@ -118,7 +120,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <Footer />
               <SocialFloat />
               <ScrollToTop />
-              <AiAgentDrawer />
+              <AiAgentDrawer cards={getChatCardIndex()} />
               <MobileActionBar />
             </AiAgentProvider>
           </MotionProvider>

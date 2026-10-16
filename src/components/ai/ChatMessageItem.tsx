@@ -1,10 +1,21 @@
 import { tripzyCopy } from "@/content/tripzy";
-import type { ChatMessage } from "@/types/chat";
+import { extractLinkHrefs } from "@/lib/utils/markdown";
+import type { ChatCardIndex, ChatMessage } from "@/types/chat";
+import { ChatLinkCards } from "./ChatLinkCards";
+import { ChatMessageActions } from "./ChatMessageActions";
 import { FormattedMessage } from "./FormattedMessage";
 import { TripzyAvatar } from "./TripzyAvatar";
 import { TypingIndicator } from "./TypingIndicator";
 
-export function ChatMessageItem({ message }: { message: ChatMessage }) {
+const MAX_CARDS = 3;
+
+interface ChatMessageItemProps {
+  message: ChatMessage;
+  isStreaming: boolean;
+  cards: ChatCardIndex;
+}
+
+export function ChatMessageItem({ message, isStreaming, cards }: ChatMessageItemProps) {
   if (message.role === "user") {
     return (
       <div className="flex justify-end">
@@ -14,6 +25,13 @@ export function ChatMessageItem({ message }: { message: ChatMessage }) {
       </div>
     );
   }
+
+  const isDone = !isStreaming && !message.failed && message.content !== "";
+  const linkedCards = isDone
+    ? extractLinkHrefs(message.content)
+        .flatMap((href) => (cards[href] ? [cards[href]] : []))
+        .slice(0, MAX_CARDS)
+    : [];
 
   return (
     <div className="flex gap-3">
@@ -28,6 +46,8 @@ export function ChatMessageItem({ message }: { message: ChatMessage }) {
         <div className="-mt-1 text-ink-soft">
           {message.content ? <FormattedMessage content={message.content} /> : <TypingIndicator />}
         </div>
+        {linkedCards.length > 0 && <ChatLinkCards cards={linkedCards} />}
+        {isDone && <ChatMessageActions content={message.content} />}
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { AppImage } from "@/components/ui/AppImage";
 import { Chevron } from "@/components/ui/ButtonLink";
 import { SaveTripButton } from "@/components/ui/SaveTripButton";
 import { pricingCopy } from "@/content/site";
-import { difficultyLabel } from "@/lib/utils/format";
+import { difficultyLabel, formatINR } from "@/lib/utils/format";
 import type { Difficulty, Tour } from "@/types/tour";
 
 const DIFFICULTY_DOT: Record<Difficulty, string> = {
@@ -43,7 +43,11 @@ export function TourCard({ tour }: { tour: Tour }) {
           <h3 className="mt-5 text-display-md">{tour.title}</h3>
           <p className="mt-3 text-slate">{tour.summary}</p>
           <div className="mt-auto flex items-end justify-between gap-4 pt-8">
-            <p className="text-[13px] font-medium tracking-[0.08em] text-slate uppercase">{pricingCopy.label}</p>
+            <p className="text-slate">
+              <span className="block text-[12px] font-medium tracking-[0.08em] uppercase">{pricingCopy.from}</span>
+              <span className="text-[19px] font-semibold tracking-tight text-ink">{formatINR(tour.priceFromINR)}</span>
+              <span className="ml-1 text-[13px]">{pricingCopy.perPerson}</span>
+            </p>
             <span className="inline-flex items-center gap-1.5 text-[15px] font-medium text-accent">
               View itinerary <Chevron />
             </span>

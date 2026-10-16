@@ -23,6 +23,7 @@ export interface TourContent {
   difficulty: Difficulty;
   maxAltitudeM: number;
   groupSize: string;
+  priceFromINR: number;
   bestMonths: number[];
   cover: ImageRef;
   featured?: boolean;

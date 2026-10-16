@@ -15,6 +15,7 @@ interface FloatLink {
   label: string;
   Icon: ComponentType<SVGProps<SVGSVGElement>>;
   className: string;
+  cta: string;
 }
 
 const LINKS: FloatLink[] = [
@@ -23,12 +24,14 @@ const LINKS: FloatLink[] = [
     label: "Follow on Instagram",
     Icon: FaInstagram,
     className: "bg-linear-45 from-[#feda75] via-[#d62976] to-[#4f5bd5]",
+    cta: "float-instagram",
   },
   {
     href: buildWhatsAppLink(),
     label: "Chat on WhatsApp",
     Icon: FaWhatsapp,
     className: "bg-[#25d366] hover:bg-[#1ebe5a]",
+    cta: "float-whatsapp",
   },
 ];
 
@@ -39,8 +42,10 @@ export function SocialFloat() {
     <div className="fixed right-6 bottom-6 z-40 hidden flex-col items-end gap-3 md:flex">
       <motion.button
         type="button"
-        onClick={openAgent}
+        onClick={() => openAgent()}
         aria-label="Plan with Tripzy"
+        aria-haspopup="dialog"
+        data-va-cta="float-tripzy"
         initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6, ease: CUBIC.outExpo, delay: 0.7 }}
@@ -52,13 +57,14 @@ export function SocialFloat() {
         </span>
       </motion.button>
 
-      {LINKS.map(({ href, label, Icon, className }, index) => (
+      {LINKS.map(({ href, label, Icon, className, cta }, index) => (
         <motion.a
           key={label}
           href={href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
+          data-va-cta={cta}
           initial={{ scale: 0.6, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, ease: CUBIC.outExpo, delay: 0.8 + index * 0.12 }}
