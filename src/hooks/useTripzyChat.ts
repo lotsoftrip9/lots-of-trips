@@ -6,12 +6,14 @@ import { tripzyCopy } from "@/content/tripzy";
 import { trackEvent } from "@/lib/analytics/track";
 import { buildHistory, streamTripzyReply } from "@/lib/ai/client";
 import { loadChat, saveChat } from "@/lib/ai/storage";
+import { useActiveLanguage } from "./useActiveLanguage";
 import type { ChatMessage } from "@/types/chat";
 
 const createId = () => crypto.randomUUID();
 
 export function useTripzyChat() {
   const pathname = usePathname();
+  const language = useActiveLanguage();
   const [messages, setMessages] = useState<ChatMessage[]>(loadChat);
   const [isStreaming, setIsStreaming] = useState(false);
   const messagesRef = useRef<ChatMessage[]>([]);
@@ -48,7 +50,7 @@ export function useTripzyChat() {
 
       let reply = "";
       try {
-        reply = await streamTripzyReply({ messages: history, page: pathname }, controller.signal, (partial) => {
+        reply = await streamTripzyReply({ messages: history, page: pathname, language }, controller.signal, (partial) => {
           reply = partial;
           patchMessage(replyId, { content: partial });
         });
@@ -66,7 +68,7 @@ export function useTripzyChat() {
         }
       }
     },
-    [pathname],
+    [pathname, language],
   );
 
   const stop = useCallback(() => controllerRef.current?.abort(), []);

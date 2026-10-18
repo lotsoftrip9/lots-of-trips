@@ -27,12 +27,14 @@ export const siteConfig: SiteConfig = {
 
 export const mainNav: NavItem[] = [
   { label: "Journeys", href: "/tours" },
+  { label: "Trip ideas", href: "/trips" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 export const mobileNav: NavItem[] = [
   { label: "Destinations", href: "/destinations" },
   { label: "Journeys", href: "/tours" },
+  { label: "Trip ideas", href: "/trips" },
   { label: "Uttarakhand", href: "/journeys/uttarakhand" },
   { label: "Himachal Pradesh", href: "/journeys/himachal" },
   { label: "About", href: "/about" },
@@ -42,6 +44,7 @@ export const mobileNav: NavItem[] = [
 export const companyNav: NavItem[] = [
   { label: "About us", href: "/about" },
   { label: "Plan a trip", href: "/contact" },
+  { label: "Trip finder quiz", href: "/trips#trip-quiz" },
   { label: "All destinations", href: "/destinations" },
   { label: "Photo gallery", href: "/gallery" },
   { label: "Photo credits", href: "/credits" },

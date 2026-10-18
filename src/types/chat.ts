@@ -14,6 +14,7 @@ export type ChatPayloadMessage = Pick<ChatMessage, "role" | "content">;
 export interface ChatRequestBody {
   messages: ChatPayloadMessage[];
   page?: string;
+  language?: string;
 }
 
 export interface ChatLinkCard {

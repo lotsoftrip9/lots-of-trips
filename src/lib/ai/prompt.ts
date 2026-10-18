@@ -1,4 +1,7 @@
+import { DEFAULT_LANGUAGE } from "@/content/languages";
 import { siteConfig } from "@/content/site";
+import { getCollection } from "@/lib/data/collections";
+import type { SiteLanguage } from "@/types/translate";
 import { getDestination, getDestinations } from "@/lib/data/destinations";
 import { getTour, getTours } from "@/lib/data/tours";
 import { difficultyLabel, formatAltitude, formatMonthRange, stateLabel } from "@/lib/utils/format";
@@ -67,19 +70,29 @@ function describePage(page?: string) {
     const tour = getTour(slug);
     if (tour) return `the "${tour.title}" tour page`;
   }
+  if (section === "trips" && slug) {
+    const collection = getCollection(slug);
+    if (collection) return `the "${collection.label}" trip ideas page`;
+  }
   return null;
 }
 
-export function getSystemPrompt(page?: string) {
+function describeLanguage(language?: SiteLanguage) {
+  if (!language || language.code === DEFAULT_LANGUAGE) return null;
+  return `The visitor is reading the site in ${language.label} (${language.native}). Reply in ${language.label}, written in its own script, unless they write to you in another language. Keep place names, tour names and links exactly as listed.`;
+}
+
+export function getSystemPrompt(page?: string, language?: SiteLanguage) {
   basePrompt ??= buildBasePrompt();
 
   const today = new Intl.DateTimeFormat("en-IN", { dateStyle: "full", timeZone: "Asia/Kolkata" }).format(new Date());
   const pageInfo = describePage(page);
+  const languageInfo = describeLanguage(language);
 
   return `${basePrompt}
 
 RIGHT NOW
 - Today is ${today} (India). Use it when the visitor says "this month", "next week" or asks what's good now.${
     pageInfo ? `\n- The visitor is browsing ${pageInfo}. If their question is vague, assume it's about this.` : ""
-  }`;
+  }${languageInfo ? `\n- ${languageInfo}` : ""}`;
 }

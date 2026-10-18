@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AiConfigError, requestChatStream } from "@/lib/ai/cloudflare";
 import { getSystemPrompt } from "@/lib/ai/prompt";
+import { languages } from "@/content/languages";
 import type { ChatPayloadMessage } from "@/types/chat";
 
 const MAX_MESSAGES = 30;
@@ -21,14 +22,18 @@ function mergeConsecutive(messages: ChatPayloadMessage[]) {
 }
 
 function parseBody(body: unknown) {
-  const { messages, page } = (body ?? {}) as { messages?: unknown; page?: unknown };
+  const { messages, page, language } = (body ?? {}) as { messages?: unknown; page?: unknown; language?: unknown };
   if (!Array.isArray(messages)) return null;
 
   const valid = mergeConsecutive(messages.filter(isChatMessage).slice(-MAX_MESSAGES));
   while (valid[0]?.role === "assistant") valid.shift();
   if (valid.at(-1)?.role !== "user") return null;
 
-  return { messages: valid, page: typeof page === "string" ? page.slice(0, 200) : undefined };
+  return {
+    messages: valid,
+    page: typeof page === "string" ? page.slice(0, 200) : undefined,
+    language: languages.find((item) => item.code === language),
+  };
 }
 
 export async function POST(req: NextRequest) {
@@ -36,7 +41,7 @@ export async function POST(req: NextRequest) {
   if (!parsed) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
 
   try {
-    const stream = await requestChatStream(getSystemPrompt(parsed.page), parsed.messages, req.signal);
+    const stream = await requestChatStream(getSystemPrompt(parsed.page, parsed.language), parsed.messages, req.signal);
     return new Response(stream, {
       headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
     });
