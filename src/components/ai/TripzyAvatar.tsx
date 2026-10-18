@@ -16,30 +16,21 @@ interface TripzyAvatarProps {
 
 export function TripzyAvatar({ size = "md", bare = false, className }: TripzyAvatarProps) {
   const { className: sizeClass, px } = SIZES[size];
-  const imageClass = cn("size-full object-contain", !bare && "p-[12%]");
-
   return (
     <span
       className={cn(
         "relative block shrink-0 overflow-hidden",
-        !bare && "rounded-full bg-white ring-1 ring-line dark:bg-[#060b18]",
+        !bare && "rounded-full bg-surface ring-1 ring-line",
         sizeClass,
         className,
       )}
     >
       <Image
-        src="/tripzy-mark-light.png"
+        src="/tripzy-mark.png"
         alt=""
         width={px * 2}
         height={px * 2}
-        className={cn(imageClass, "dark:hidden")}
-      />
-      <Image
-        src="/tripzy-mark-dark.png"
-        alt=""
-        width={px * 2}
-        height={px * 2}
-        className={cn(imageClass, "hidden dark:block")}
+        className={cn("size-full object-contain", !bare && "p-[12%]")}
       />
     </span>
   );
