@@ -10,6 +10,7 @@ import { mainNav } from "@/content/site";
 import { cn } from "@/lib/utils/cn";
 import type { HeaderData } from "@/types/site";
 import styles from "./Header.module.css";
+import { LanguageMenu } from "./language/LanguageMenu";
 import { MegaMenu } from "./MegaMenu";
 import { MenuToggle } from "./MenuToggle";
 import { MobileMenu } from "./MobileMenu";
@@ -77,6 +78,7 @@ export function Header({ data }: { data: HeaderData }) {
           <div className="flex items-center justify-end gap-1 sm:gap-1.5">
             <SearchMenu data={data.search} onOpen={closeMenu} className={styles.searchButton} />
             <SavedTripsMenu className={styles.savedButton} />
+            <LanguageMenu className={styles.languageButton} />
             <ThemeToggle className={styles.iconButton} />
             <Link href="/contact" data-va-cta="header-plan-trip" className={styles.cta}>
               Plan a trip

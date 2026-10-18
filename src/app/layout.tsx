@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@/components/layout/Analytics";
 import { Footer } from "@/components/layout/footer/Footer";
+import { GoogleTranslate } from "@/components/layout/GoogleTranslate";
 import { Header } from "@/components/layout/header/Header";
 import { MotionProvider } from "@/components/layout/MotionProvider";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
@@ -126,6 +127,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </MotionProvider>
         </ThemeProvider>
         <Analytics />
+        <GoogleTranslate />
       </body>
     </html>
   );

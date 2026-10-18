@@ -58,7 +58,8 @@ export function AiAgentDrawer({ cards }: { cards: ChatCardIndex }) {
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.3, ease: CUBIC.outExpo }}
           onClickCapture={closeOnInternalLink}
-          className="fixed inset-0 z-50 flex flex-col bg-snow sm:inset-auto sm:right-6 sm:bottom-6 sm:h-[min(42rem,calc(100dvh-3rem))] sm:w-100 sm:overflow-hidden sm:rounded-2xl sm:border sm:border-line sm:shadow-2xl sm:shadow-black/20"
+          translate="no"
+          className="notranslate fixed inset-0 z-50 flex flex-col bg-snow sm:inset-auto sm:right-6 sm:bottom-6 sm:h-[min(42rem,calc(100dvh-3rem))] sm:w-100 sm:overflow-hidden sm:rounded-2xl sm:border sm:border-line sm:shadow-2xl sm:shadow-black/20"
         >
           <ChatHeader canReset={hasConversation} onReset={reset} onClose={closeAgent} />
           <ChatMessageList messages={messages} isStreaming={isStreaming} cards={cards} onPick={send} />

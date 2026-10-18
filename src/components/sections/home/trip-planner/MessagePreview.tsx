@@ -11,7 +11,7 @@ import { initials } from "@/lib/utils/format";
 
 export function MessagePreview({ message }: { message: string }) {
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-line ring-inset">
+    <div translate="no" className="notranslate flex h-full flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-line ring-inset">
       <div className="flex items-center gap-3 border-b border-line px-5 py-4">
         <span
           aria-hidden
