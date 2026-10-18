@@ -1,0 +1,157 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.layer::before,
+.layer::after {
+  content: "";
+  position: absolute;
+}
+
+.snow::before,
+.snow::after,
+.rain::before,
+.rain::after,
+.thunder::before {
+  inset: -480px 0 0;
+  background-repeat: repeat;
+  animation: fall linear infinite;
+}
+
+.snow::before {
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.55) 1.2px, transparent 1.8px);
+  background-size: 48px 48px;
+  animation-duration: 16s;
+}
+
+.snow::after {
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.3) 0.9px, transparent 1.4px);
+  background-size: 34px 40px;
+  background-position: 11px 17px;
+  animation-duration: 26s;
+}
+
+.rain::before,
+.thunder::before {
+  background-image: radial-gradient(ellipse 0.7px 8px at 50% 50%, rgb(255 255 255 / 0.35), transparent);
+  background-size: 38px 60px;
+  animation-duration: 1.4s;
+}
+
+.rain::after {
+  background-image: radial-gradient(ellipse 0.6px 6px at 50% 50%, rgb(255 255 255 / 0.2), transparent);
+  background-size: 27px 80px;
+  background-position: 13px 29px;
+  animation-duration: 2.2s;
+}
+
+.thunder::after {
+  inset: 0;
+  background: rgb(255 255 255 / 0.07);
+  opacity: 0;
+  animation: flash 7s steps(1, end) infinite;
+}
+
+.fog::before,
+.cloud::before {
+  inset: 0 -50%;
+  background:
+    radial-gradient(ellipse 40% 30% at 30% 65%, rgb(255 255 255 / 0.09), transparent 70%),
+    radial-gradient(ellipse 35% 25% at 72% 35%, rgb(255 255 255 / 0.07), transparent 70%);
+  animation: drift 20s ease-in-out infinite alternate;
+}
+
+.cloud::before {
+  opacity: 0.6;
+}
+
+.clear::before {
+  top: -40%;
+  left: -20%;
+  width: 75%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgb(240 211 160 / 0.2), transparent 65%);
+  animation: glow 7s ease-in-out infinite alternate;
+}
+
+.night::before {
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgb(255 255 255 / 0.6) 0.8px, transparent 1.2px),
+    radial-gradient(circle, rgb(255 255 255 / 0.35) 0.6px, transparent 1px);
+  background-size:
+    90px 70px,
+    53px 61px;
+  background-position:
+    0 0,
+    27px 31px;
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(480px);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-12%);
+  }
+  to {
+    transform: translateX(12%);
+  }
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.6;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes flash {
+  0%,
+  90%,
+  100% {
+    opacity: 0;
+  }
+  91% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 0;
+  }
+  93% {
+    opacity: 0.6;
+  }
+  94% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer::before,
+  .layer::after {
+    animation: none;
+  }
+}

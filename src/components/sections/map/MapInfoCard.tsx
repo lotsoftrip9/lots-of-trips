@@ -32,7 +32,7 @@ export function MapInfoCard({ destination }: { destination: MapDestination }) {
           <div className="p-5">
             {destination.weather && (
               <div className="flex items-center gap-4 rounded-xl bg-white/6 p-4">
-                <WeatherIcon kind={destination.weather.kind} className="size-9 text-[#f0d3a0]" strokeWidth={1.4} />
+                <WeatherIcon kind={destination.weather.kind} animated className="size-9 text-[#f0d3a0]" strokeWidth={1.4} />
                 <div>
                   <p className="text-[1.75rem] leading-none font-semibold text-white">{destination.weather.temperature}°C</p>
                   <p className="mt-1 text-[13px] text-white/60">{destination.weather.label} right now</p>

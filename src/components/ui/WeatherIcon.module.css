@@ -1,0 +1,96 @@
+.animated {
+  display: inline-grid;
+  transform-origin: center;
+}
+
+.spin {
+  animation: spin 24s linear infinite;
+}
+
+.drift {
+  animation: drift 5s ease-in-out infinite alternate;
+}
+
+.bob {
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+.sway {
+  animation: sway 4s ease-in-out infinite alternate;
+}
+
+.flicker {
+  animation: flicker 4s steps(1, end) infinite;
+}
+
+.glow {
+  animation: glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-6%);
+  }
+  to {
+    transform: translateX(6%);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6%);
+  }
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  88%,
+  100% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.35;
+  }
+  93% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated {
+    animation: none;
+  }
+}

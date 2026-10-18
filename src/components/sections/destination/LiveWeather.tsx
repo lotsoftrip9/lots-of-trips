@@ -2,6 +2,7 @@ import { Wind } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { WeatherIcon } from "@/components/ui/WeatherIcon";
 import { getWeather } from "@/lib/weather/getWeather";
+import { WeatherAmbience } from "./WeatherAmbience";
 import type { Destination } from "@/types/destination";
 
 const weekday = new Intl.DateTimeFormat("en-IN", { weekday: "short", timeZone: "UTC" });
@@ -14,8 +15,9 @@ export async function LiveWeather({ destination }: { destination: Destination })
 
   return (
     <section className="container-x pb-section">
-      <Reveal className="grid overflow-hidden rounded-xl bg-night text-white md:grid-cols-12">
-        <div className="p-7 md:col-span-5 md:p-10">
+      <Reveal className="relative grid overflow-hidden rounded-xl bg-night text-white md:grid-cols-12">
+        <WeatherAmbience kind={current.kind} />
+        <div className="relative p-7 md:col-span-5 md:p-10">
           <p className="flex items-center gap-2 text-[12px] font-medium tracking-[0.18em] text-[#f0d3a0] uppercase">
             <span className="relative flex size-2">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#f0d3a0] opacity-60" />
@@ -25,7 +27,7 @@ export async function LiveWeather({ destination }: { destination: Destination })
           </p>
           <h2 className="mt-3 text-display-md">Right now in {destination.name}</h2>
           <div className="mt-8 flex items-center gap-5">
-            <WeatherIcon kind={current.kind} className="size-14 text-[#f0d3a0]" strokeWidth={1.4} />
+            <WeatherIcon kind={current.kind} animated className="size-14 text-[#f0d3a0]" strokeWidth={1.4} />
             <div>
               <p className="text-display-lg leading-none font-medium">{current.temperature}°C</p>
               <p className="mt-2 text-white/70">{current.label}</p>
@@ -37,7 +39,7 @@ export async function LiveWeather({ destination }: { destination: Destination })
           </p>
         </div>
 
-        <div className="border-t border-white/10 p-7 md:col-span-7 md:border-t-0 md:border-l md:p-10">
+        <div className="relative border-t border-white/10 p-7 md:col-span-7 md:border-t-0 md:border-l md:p-10">
           <p className="text-[12px] font-medium tracking-[0.18em] text-white/50 uppercase">Next {daily.length} days</p>
           <ol className="mt-5 grid grid-cols-5 gap-2">
             {daily.map((day, index) => (
