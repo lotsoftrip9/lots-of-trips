@@ -19,8 +19,8 @@ export const siteConfig: SiteConfig = {
   contactFormSrc: "https://forms.daorbit.in/form/6acf292c58e591d396a9d8fa/view",
   social: {
     instagram: {
-      handle: "@lotsoftrip_",
-      url: "https://www.instagram.com/lotsoftrip_/",
+      handle: "@lotsoftrips_",
+      url: "https://www.instagram.com/lotsoftrips_/",
     },
   },
 };

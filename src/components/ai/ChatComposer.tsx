@@ -34,8 +34,11 @@ export function ChatComposer({ isStreaming, autoFocus, onSend, onStop }: ChatCom
   };
 
   return (
-    <form onSubmit={submit} className="px-3 pt-3 pb-[calc(0.5rem+env(safe-area-inset-bottom))] sm:px-4 sm:pb-2">
-      <div className="flex items-end gap-2 rounded-3xl border border-line bg-surface p-1.5 pl-4 transition-colors focus-within:border-accent">
+    <form
+      onSubmit={submit}
+      className="border-t border-line px-3 pt-3 pb-[calc(0.5rem+env(safe-area-inset-bottom))] sm:px-4 sm:pb-2.5"
+    >
+      <div className="flex items-end gap-2 rounded-3xl border border-line bg-surface p-1.5 pl-4 transition-colors focus-within:border-accent/60">
         <label htmlFor="tripzy-input" className="sr-only">
           Message Tripzy
         </label>
@@ -70,7 +73,7 @@ export function ChatComposer({ isStreaming, autoFocus, onSend, onStop }: ChatCom
           </button>
         )}
       </div>
-      <p className="mt-1.5 text-center text-[11px] text-slate">{tripzyCopy.disclaimer}</p>
+      <p className="mt-2 text-center text-[10.5px] text-slate/80">{tripzyCopy.disclaimer}</p>
     </form>
   );
 }

@@ -111,7 +111,7 @@ All business details live in `src/content/site.ts`. Use **dummy placeholder valu
 | Field | Value |
 |---|---|
 | Brand | Lots of Trips |
-| Instagram | https://www.instagram.com/lotsoftrip_/ (real) |
+| Instagram | https://www.instagram.com/lotsoftrips_/ (real) |
 | WhatsApp | +91 70152 48493 (real) → wa.me/917015248493 with a prefilled message |
 | Phone | +91 70152 48493 (real) |
 | Email | info.lotsoftrips@gmail.com (real) |
@@ -152,7 +152,7 @@ Everything else (tour prices, testimonials, journal posts, team) is also dummy c
 6. Seasons — month segmented control → destinations in season
 7. Ways to travel — image tile grid
 8. Testimonials — black section, centred quote, dot navigation
-9. Instagram strip "On the trail with us" → links to @lotsoftrip_
+9. Instagram strip "On the trail with us" → links to @lotsoftrips_
 10. Plan-your-journey CTA card (form + WhatsApp)
 
 ---

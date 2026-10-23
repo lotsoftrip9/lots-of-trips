@@ -2,12 +2,12 @@ export const tripzyCopy = {
   name: "Tripzy",
   badge: "AI",
   status: "Online · replies in seconds",
-  welcomeTitle: "Plan your Himalayan trip",
-  welcomeText:
-    "Ask me about routes, seasons, how many days you need or where to stay. I know every place we travel to in Uttarakhand and Himachal.",
-  placeholder: "Ask Tripzy anything about your trip",
+  welcomeEyebrow: "Hi, I'm Tripzy",
+  welcomeTitle: "Where in the Himalaya are you headed?",
+  welcomeText: "Ask about routes, seasons or where to stay across Uttarakhand and Himachal.",
+  placeholder: "Ask about your trip…",
   thinking: "Tripzy is typing",
-  suggestionsLabel: "Popular questions",
+  suggestionsLabel: "Try asking",
   quoteLabel: "Ready for an exact price?",
   quoteCta: "Get a quote",
   quoteMessage: "Hi Lots of Trips! I was planning a trip with Tripzy on your website. Could you share a quote?",
@@ -36,36 +36,18 @@ export const destinationQuestions = (name: string) => [
   `How do I reach ${name} and where should I stay?`,
 ];
 
-export type TripzySuggestionIcon = "mountain" | "waves" | "trees" | "paw";
-
-export const tripzySuggestions: {
-  icon: TripzySuggestionIcon;
-  title: string;
-  description: string;
-  prompt: string;
-}[] = [
+export const tripzySuggestions: { title: string; prompt: string }[] = [
+  { title: "4 days in Manali & Kasol", prompt: "Plan 4 days in Manali and Kasol for two people." },
   {
-    icon: "mountain",
-    title: "4 days in Manali and Kasol",
-    description: "Day-by-day route for two",
-    prompt: "Plan 4 days in Manali and Kasol for two people.",
-  },
-  {
-    icon: "waves",
-    title: "A weekend in Rishikesh",
-    description: "Rafting season and a 2-day plan",
+    title: "Weekend in Rishikesh",
     prompt: "When is the best time for rafting in Rishikesh, and how would you plan a weekend there?",
   },
   {
-    icon: "trees",
     title: "Quiet places in Himachal",
-    description: "Away from the crowds",
     prompt: "Which quieter places in Himachal would you recommend, away from crowds?",
   },
   {
-    icon: "paw",
-    title: "Nainital and Corbett with family",
-    description: "Lakes and a jungle safari in 3 days",
+    title: "Nainital & Corbett with family",
     prompt: "Plan a 3-day family trip covering Nainital and a Jim Corbett safari.",
   },
 ];
