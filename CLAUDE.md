@@ -114,7 +114,7 @@ All business details live in `src/content/site.ts`. Use **dummy placeholder valu
 | Instagram | https://www.instagram.com/lotsoftrip_/ (real) |
 | WhatsApp | +91 70152 48493 (real) → wa.me/917015248493 with a prefilled message |
 | Phone | +91 70152 48493 (real) |
-| Email | lotsoftrip9@gmail.com (real) |
+| Email | info.lotsoftrips@gmail.com (real) |
 | Address | `Dehradun, Uttarakhand, India` (dummy) |
 
 ### Contact flows

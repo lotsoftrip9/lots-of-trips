@@ -1,5 +1,5 @@
 export const USER_AGENT =
-  "LotsOfTripImageFetcher/1.0 (https://www.instagram.com/lotsoftrip_/; lotsoftrip9@gmail.com)";
+  "LotsOfTripImageFetcher/1.0 (https://www.instagram.com/lotsoftrip_/; info.lotsoftrips@gmail.com)";
 
 const API = "https://commons.wikimedia.org/w/api.php";
 const ALLOWED_LICENSE = /^(public domain|cc0|cc by(-sa)? \d(\.\d)?)/i;

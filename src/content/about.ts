@@ -27,4 +27,15 @@ export const aboutValues = [
   },
 ] as const;
 
-export const team = [{ name: "Karan Dangwal", role: "Founder & trip designer", initials: "KD" }];
+export const team = [
+  {
+    name: "Karan Dangwal",
+    role: "Founder & trip designer",
+    photo: {
+      src: "/images/team/karan-dangwal.webp",
+      alt: "Portrait of Karan Dangwal, founder of Lots of Trips",
+      blurDataURL:
+        "data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAACQBACdASoQABUAPu1iqU2ppaOiMAgBMB2JQBdg7wDZSm2TV5saYnSQcUWaJgAA/vI1V5AWf+tfRj6ntLRAstNeW/qYPS1ISMKSyRVueBOQKNwsRSwtG8ARVCqn0itjtgsx/BGyxpuS+wqq2LbBmwvkOHkolwrhyrKf81WlKKpfSbCv97KTwXUmBrcVxzijSP8ioXp/r2M5LPMax3wT8f6vqaMAVkjf2gScHQk5UuAAAA==",
+    },
+  },
+];
