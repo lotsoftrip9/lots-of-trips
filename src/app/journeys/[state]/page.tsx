@@ -7,6 +7,7 @@ import { StateHero } from "@/components/sections/state/StateHero";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { getDestinationsByState, getState, getStateHeroImage, getStates } from "@/lib/data/destinations";
 import { getTours } from "@/lib/data/tours";
+import { truncateAtWord } from "@/lib/utils/format";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 
 export function generateStaticParams() {
@@ -19,8 +20,8 @@ export async function generateMetadata({ params }: PageProps<"/journeys/[state]"
   if (!state) return {};
 
   const heroImage = getStateHeroImage(state.slug);
-  const title = `${state.name} Tours & Destinations — Handcrafted Himalayan Trips`;
-  const description = `${state.description.slice(0, 155)}... Explore ${state.name} places to visit, signature journeys, and custom travel packages.`;
+  const title = `${state.name} Tour Packages — Places to Visit & Itineraries`;
+  const description = `${truncateAtWord(state.description, 120)} Explore ${state.name} places to visit and custom tour packages.`;
 
   return {
     title,

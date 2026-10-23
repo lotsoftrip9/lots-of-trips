@@ -27,32 +27,36 @@ import { resolveImage } from "@/lib/data/images";
 import { getMapData } from "@/lib/data/map";
 import { getTestimonials } from "@/lib/data/testimonials";
 import { getFeaturedTours } from "@/lib/data/tours";
-import { buildFaqSchema } from "@/lib/utils/schema";
+import { buildFaqSchema, buildOrganizationSchema, organizationId } from "@/lib/utils/schema";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 import { getWeatherForAll } from "@/lib/weather/getWeather";
 
 export const metadata: Metadata = {
-  title: "Lots of Trips — Handcrafted Journeys in Uttarakhand & Himachal",
+  title: { absolute: "Uttarakhand & Himachal Tour Packages | Lots of Trips" },
   description:
-    "Tailor-made Himalayan trips, mountain treks, and cultural circuits across Uttarakhand and Himachal Pradesh. Planned by locals in Dehradun with handpicked stays and private transport.",
+    "Custom Uttarakhand & Himachal tour packages — Manali, Shimla, Kasol, Rishikesh, Nainital & Jim Corbett. Planned by Dehradun locals with handpicked stays and private cabs.",
   alternates: {
     canonical: "/",
   },
   keywords: [
     "Uttarakhand tour packages",
+    "Himachal tour packages",
     "Himachal Pradesh tour packages",
-    "Himalayan travel agency",
-    "customized mountain trips India",
-    "Manali tour package",
-    "Shimla Kufri holiday package",
-    "Rishikesh river rafting and yoga",
-    "Jim Corbett tiger safari",
-    "Nainital lake tour",
-    "Kasol Kheerganga trek",
-    "Jibhi Tirthan homestay",
-    "Dharamshala McLeod Ganj itinerary",
-    "Amritsar Golden Temple tour",
-    "Dehradun tour operator",
+    "Shimla Manali tour package",
+    "Manali Kasol tour package",
+    "Haridwar Rishikesh Mussoorie tour package",
+    "Nainital Jim Corbett tour package",
+    "Amritsar Dharamshala Dalhousie tour",
+    "Kasol Jibhi trip",
+    "Mussoorie Dhanaulti weekend trip",
+    "Himachal tour package from Delhi",
+    "Uttarakhand tour package from Delhi",
+    "hill station trips near Delhi",
+    "Himachal honeymoon package",
+    "Uttarakhand family tour package",
+    "Jim Corbett jungle safari booking",
+    "Rishikesh river rafting",
+    "travel agency in Dehradun",
   ],
   openGraph: {
     type: "website",
@@ -96,37 +100,7 @@ export default async function HomePage() {
   const siteUrl = getSiteUrl();
 
   const schemas = [
-    {
-      "@context": "https://schema.org",
-      "@type": "TravelAgency",
-      "@id": `${siteUrl}/#organization`,
-      name: siteConfig.name,
-      alternateName: siteConfig.shortName,
-      url: siteUrl,
-      logo: `${siteUrl}/logo.png`,
-      image: `${siteUrl}/og-image.jpg`,
-      description: siteConfig.description,
-      telephone: siteConfig.contact.phoneE164,
-      email: siteConfig.contact.email,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Rajpur Road",
-        addressLocality: "Dehradun",
-        addressRegion: "Uttarakhand",
-        postalCode: "248001",
-        addressCountry: "IN",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 30.3165,
-        longitude: 78.0322,
-      },
-      areaServed: [
-        { "@type": "State", name: "Uttarakhand" },
-        { "@type": "State", name: "Himachal Pradesh" },
-      ],
-      sameAs: [siteConfig.social.instagram.url],
-    },
+    buildOrganizationSchema(siteUrl),
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -135,9 +109,7 @@ export default async function HomePage() {
       name: siteConfig.name,
       description: siteConfig.description,
       inLanguage: "en-IN",
-      publisher: {
-        "@id": `${siteUrl}/#organization`,
-      },
+      publisher: { "@id": organizationId(siteUrl) },
     },
     buildFaqSchema(homeFaqs),
   ];

@@ -15,6 +15,11 @@ export const siteConfig: SiteConfig = {
     email: "info.lotsoftrips@gmail.com",
     address: "Rajpur Road, Dehradun, Uttarakhand 248001",
     hours: "Mon – Sat · 10 am – 7 pm IST · Sunday closed",
+    openingHours: {
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "10:00",
+      closes: "19:00",
+    },
   },
   contactFormSrc: "https://forms.daorbit.in/form/6acf292c58e591d396a9d8fa/view",
   social: {

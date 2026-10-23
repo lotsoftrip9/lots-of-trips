@@ -88,3 +88,11 @@ export const formatDate = (iso: string) =>
 
 export const pluralize = (count: number, singular: string, plural = `${singular}s`) =>
   `${count} ${count === 1 ? singular : plural}`;
+
+export const formatNightsDays = (days: number) => `${Math.max(days - 1, 1)}N/${days}D`;
+
+export function truncateAtWord(text: string, max: number) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  return `${cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:—–-]+$/, "")}…`;
+}

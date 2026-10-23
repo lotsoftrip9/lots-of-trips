@@ -6,7 +6,7 @@ import { getAllCredits } from "@/lib/data/images";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 
 export const metadata: Metadata = {
-  title: "Photo Credits & Licences — Lots of Trips",
+  title: "Photo Credits & Licences",
   description: "Photographer credits, sources, and open licences for imagery across Lots of Trips.",
   alternates: { canonical: "/credits" },
   openGraph: {

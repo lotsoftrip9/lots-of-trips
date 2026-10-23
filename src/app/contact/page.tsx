@@ -5,13 +5,14 @@ import { EmbeddedForm } from "@/components/ui/EmbeddedForm";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { siteConfig } from "@/content/site";
+import { buildOrganizationSchema, organizationId } from "@/lib/utils/schema";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 
 const DESCRIPTION =
   "Contact Lots of Trips in Dehradun. Get personalized trip planning for Uttarakhand and Himachal Pradesh — instant WhatsApp assistance, transparent pricing, and local guidance.";
 
 export const metadata: Metadata = {
-  title: "Contact & Trip Planner — Lots of Trips",
+  title: "Contact Us — Plan Your Uttarakhand & Himachal Trip",
   description: DESCRIPTION,
   keywords: [
     "contact Lots of Trips",
@@ -52,21 +53,9 @@ export default function ContactPage() {
       name: "Contact Lots of Trips",
       description: DESCRIPTION,
       url: `${siteUrl}/contact`,
-      mainEntity: {
-        "@type": "TravelAgency",
-        name: siteConfig.name,
-        telephone: siteConfig.contact.phoneE164,
-        email: siteConfig.contact.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "Rajpur Road",
-          addressLocality: "Dehradun",
-          addressRegion: "Uttarakhand",
-          postalCode: "248001",
-          addressCountry: "IN",
-        },
-      },
+      mainEntity: { "@id": organizationId(siteUrl) },
     },
+    buildOrganizationSchema(siteUrl),
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",

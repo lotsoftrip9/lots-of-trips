@@ -17,6 +17,7 @@ import { destinationQuestions } from "@/content/tripzy";
 import { getAdjacentDestination, getDestination, getDestinations } from "@/lib/data/destinations";
 import { getDestinationFaqs, getGettingThere } from "@/lib/data/guides";
 import { getToursForDestination } from "@/lib/data/tours";
+import { truncateAtWord } from "@/lib/utils/format";
 import { destinationMapHref } from "@/lib/utils/maps";
 import { buildFaqSchema } from "@/lib/utils/schema";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
@@ -32,17 +33,21 @@ export async function generateMetadata({ params }: PageProps<"/destinations/[slu
 
   const coverImage = destination.images[0]?.src;
   const stateLabel = destination.state === "uttarakhand" ? "Uttarakhand" : "Himachal Pradesh";
-  const title = `${destination.name}, ${stateLabel} — Travel Guide, Weather & Trips`;
-  const description = `${destination.description.slice(0, 150)}... Explore ${destination.name} highlights, best months to visit, live weather, and custom itineraries.`;
+  const title = `${destination.name} Tour Packages & Travel Guide — Best Time, Weather`;
+  const description = `${truncateAtWord(destination.description, 110)} Places to visit, best time and live weather in ${destination.name}, ${stateLabel}.`;
 
   return {
     title,
     description,
     keywords: [
-      `${destination.name} travel guide`,
       `${destination.name} tour package`,
+      `${destination.name} tour package from Delhi`,
+      `${destination.name} trip`,
+      `${destination.name} travel guide`,
       `places to visit in ${destination.name}`,
+      `things to do in ${destination.name}`,
       `best time to visit ${destination.name}`,
+      `how to reach ${destination.name}`,
       `${destination.name} weather`,
       `${destination.name} ${stateLabel}`,
       ...destination.highlights,

@@ -7,7 +7,7 @@ import { getGalleryPhotos } from "@/lib/data/gallery";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 
 export const metadata: Metadata = {
-  title: "Photo Gallery — Uttarakhand & Himachal Pradesh | Lots of Trips",
+  title: "Photo Gallery — Uttarakhand & Himachal Pradesh",
   description:
     "Browse photos from every destination across Uttarakhand and Himachal Pradesh, filterable by location — Shimla, Manali, Rishikesh, Nainital, Jim Corbett and more.",
   alternates: { canonical: "/gallery" },

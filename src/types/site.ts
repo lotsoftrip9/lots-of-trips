@@ -21,6 +21,7 @@ export interface SiteConfig {
     email: string;
     address: string;
     hours: string;
+    openingHours: { days: string[]; opens: string; closes: string };
   };
   contactFormSrc: string;
   social: {

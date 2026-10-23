@@ -16,7 +16,8 @@ import { getDestination } from "@/lib/data/destinations";
 import { getTourFaqs } from "@/lib/data/guides";
 import { getTestimonialForTour } from "@/lib/data/testimonials";
 import { getRelatedTours, getTour, getTours } from "@/lib/data/tours";
-import { buildFaqSchema } from "@/lib/utils/schema";
+import { formatNightsDays, truncateAtWord } from "@/lib/utils/format";
+import { buildFaqSchema, organizationId } from "@/lib/utils/schema";
 import { getSiteUrl } from "@/lib/utils/siteUrl";
 
 export function generateStaticParams() {
@@ -28,20 +29,28 @@ export async function generateMetadata({ params }: PageProps<"/tours/[slug]">): 
   const tour = getTour(slug);
   if (!tour) return {};
 
-  const title = `${tour.title} (${tour.durationDays} Days Itinerary) — Lots of Trips`;
-  const description = `${tour.summary} Includes stays, private car transfers, sightseeing, and 24/7 on-trip assistance. Custom quote on request.`;
+  const nightsDays = formatNightsDays(tour.durationDays);
+  const title = `${tour.title} Tour Package — ${nightsDays} Itinerary`;
+  const description = truncateAtWord(
+    `${nightsDays} ${tour.title} tour package. ${tour.summary} Stays, private cab and sightseeing included — custom quote on WhatsApp.`,
+    300,
+  );
   const coverImage = tour.cover.src;
+  const placeNames = tour.destinations.map((slug) => getDestination(slug)?.name ?? slug);
+  const route = placeNames.join(" ");
 
   return {
     title,
     description,
     keywords: [
       `${tour.title} tour package`,
-      `${tour.title} itinerary`,
-      `${tour.durationDays} days Himalayan tour`,
-      ...tour.destinations.map((d) => `${d} tour package`),
-      "Himalayan road trip",
-      "custom mountain tour package",
+      `${route} tour package`,
+      `${route} tour package from Delhi`,
+      `${route} itinerary ${tour.durationDays} days`,
+      `${nightsDays} ${route} trip`,
+      `${route} family tour`,
+      `${route} honeymoon package`,
+      ...placeNames.map((name) => `${name} tour package`),
     ],
     alternates: { canonical: `/tours/${tour.slug}` },
     openGraph: {
@@ -99,11 +108,7 @@ export default async function TourPage({ params }: PageProps<"/tours/[slug]">) {
           },
         })),
       },
-      provider: {
-        "@type": "TravelAgency",
-        name: "Lots of Trips",
-        url: siteUrl,
-      },
+      provider: { "@id": organizationId(siteUrl) },
     },
     {
       "@context": "https://schema.org",
